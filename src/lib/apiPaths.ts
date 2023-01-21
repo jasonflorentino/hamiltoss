@@ -1,0 +1,1 @@
+export const IMG_ROOT = 'https://cdn.recyclecoach.com/gallery/'
