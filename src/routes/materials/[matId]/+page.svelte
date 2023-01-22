@@ -1,9 +1,9 @@
-<script>
+<script lang='ts'>
+    import type { PageData } from './$types'
 	import { compact, head, split } from 'lodash-es';
     import { IMG_ROOT } from '$lib/apiPaths'
 
-	/** @type {import('./$types').PageData} */
-	export let data;
+	export let data: PageData;
 	$: bodyText = compact(split(data.disposal_body, /<\/?p>/));
     $: imageData = head(data.images)
 </script>
