@@ -1,15 +1,18 @@
-<script lang='ts'>
-	import type { PageData } from './$types'
+<script lang="ts">
+	import type { PageData } from './$types';
+	import { sortBy } from 'lodash-es'
 	export let data: PageData;
 </script>
 
-<h1>All Materials</h1>
-<p>Last Updated: 2022-01-16</p>
+<main class="p-5">
+	<h1 class="text-4xl font-bold text-emerald-300">All Materials</h1>
+	<p class="text-sm font-medium">Last Updated: 2022-01-16</p>
 
-<ul>
-	{#each data.items as item}
-		<li>
-			<a href="/materials/{item.mat_id}">{item.mat_nm}</a>
-		</li>
-	{/each}
-</ul>
+	<ul class="mt-5 divide-emerald-400 divide-y">
+		{#each sortBy(data.items, ['mat_nm']) as item}
+			<li class="py-3">
+				<a href="/materials/{item.mat_id}" class="text-lg">{item.mat_nm}</a>
+			</li>
+		{/each}
+	</ul>
+</main>

@@ -22,9 +22,9 @@
 	/**
 	 * Handle doing the search by making a new request
 	 * to our app server by updating url query string.
-	 * Our server will then handle reaching out to Hamilton's 
-	 * api for search results. 
-	 * 
+	 * Our server will then handle reaching out to Hamilton's
+	 * api for search results.
+	 *
 	 * Debounce these updates to avoid hitting their api too often.
 	 */
 	let scheduledCall: ReturnType<typeof setTimeout>;
@@ -38,7 +38,7 @@
 				if (target.value) {
 					window.location.assign(`?query=${encodeURIComponent(sanitize(target.value))}`);
 				} else {
-					window.location.assign('/')
+					window.location.assign('/');
 				}
 			}
 			loading = false;
@@ -46,29 +46,47 @@
 	};
 </script>
 
-<h1>Where does this go?</h1>
-<p>Find out if something is recyclable in Hamilton</p>
+<main class="p-5">
+	<h1 class="text-6xl mb-5 font-black text-emerald-400">🗑 Hamiltoss</h1>
+	<p class="font-medium text-cyan-400 text-lg">Find out if something is compostable, recyclable, or bin-able in Hamilton.</p>
 
-<form>
-	<input type="text" autofocus value={query} on:input={updateDisplay} on:input={debouncedSearch} />
-	<button>Search</button>
-</form>
+	<form class="my-6">
+		<label for="search-query" class='block mb-2 text-sm'>
+			What do you want to toss?
+		</label>
+		<input
+			autofocus
+			type="text"
+			id="search-query"
+			value={query}
+			on:input={updateDisplay}
+			on:input={debouncedSearch}
+			class="bg-gray-800 border border-solid border-emerald-100 max-w-lg px-3 py-2 rounded-md text-lg w-full"
+		/>
+	</form>
 
-{#if query}
-	<p>Searching for: {query}</p>
-	{#if loading}
-		<p>Loading...</p>
-	{:else if data.results && data.results.length}
-		<ul>
-			{#each data.results as result}
-				<li>
-					<a href="/materials/{result.id}">
-						<p>{result.name} {result.synonym ? `(${result.synonym})` : ''}</p>
-					</a>
-				</li>
-			{/each}
-		</ul>
-	{:else}
-		<p>No results</p>
+	{#if query}
+		<p class="text-gray-300 font-regular mb-3 text-sm">Searching for: <span class="text-cyan-400 font-bold">{query}</span></p>
+		{#if loading}
+			<p>Loading...</p>
+		{:else if data.results && data.results.length}
+			<ul class="divide-emerald-400 divide-y">
+				{#each data.results as result}
+					<li class="py-3">
+						<a href="/materials/{result.id}" class="text-xl text-cyan-400">
+							<p>{result.name} <span class="text-lg text-gray-400">{result.synonym ? `(${result.synonym})` : ''}</span></p>
+						</a>
+					</li>
+				{/each}
+			</ul>
+		{:else}
+			<p>No results</p>
+		{/if}
 	{/if}
-{/if}
+</main>
+
+<style>
+	:global(body) {
+		@apply bg-gray-900 text-slate-200;
+	}
+</style>

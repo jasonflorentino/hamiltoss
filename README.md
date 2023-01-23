@@ -5,17 +5,18 @@ _Find out if something is recyclable in Hamilton_
 ## TODO
 
 - Current search functionality may not be idiomatic...
-- Add styling
-  - system ui dark mode from the start please
-    - Reference plant server for implementation
+- more styling
+- darkmode toggle
 
-## Setup
+## Tech intro
 
 This is a SvelteKit app made with their TypeScript starter:
 
 [Svelte Kit Docs](https://kit.svelte.dev/docs/introduction)
 
 [Svelte Docs](https://svelte.dev/docs)
+
+Styling is done with [Tailwind](https://tailwindcss.com/docs/installation) and was added to the project using this handy [svelte-add/tailwindcss](https://github.com/svelte-add/tailwindcss)
 
 ## Developing
 
@@ -28,6 +29,8 @@ npm run dev
 npm run dev -- --open
 ```
 
+From there you can edit files, save them, and it'll update in the browser.
+
 ## Building
 
 To create a production version of your app:
@@ -38,4 +41,8 @@ npm run build
 
 You can preview the production build with `npm run preview`.
 
+## Deployment
+
 > To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+
+TBD
