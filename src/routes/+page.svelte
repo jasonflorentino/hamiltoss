@@ -35,7 +35,11 @@
 		scheduledCall = setTimeout(() => {
 			if (e.target !== null) {
 				const target = e.target as HTMLInputElement;
-				window.location.assign(`?query=${encodeURIComponent(sanitize(target.value))}`);
+				if (target.value) {
+					window.location.assign(`?query=${encodeURIComponent(sanitize(target.value))}`);
+				} else {
+					window.location.assign('/')
+				}
 			}
 			loading = false;
 		}, delayMs);
@@ -46,7 +50,7 @@
 <p>Find out if something is recyclable in Hamilton</p>
 
 <form>
-	<input type="text" value={query} on:input={updateDisplay} on:input={debouncedSearch} />
+	<input type="text" autofocus value={query} on:input={updateDisplay} on:input={debouncedSearch} />
 	<button>Search</button>
 </form>
 
