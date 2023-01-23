@@ -1,3 +1,9 @@
+/**
+ * List of materials found from
+ * https://api.recyclecoach.com/8/mats?lang=en_US
+ * 
+ * Keep as constant here as I don't expect this to change that often.
+ */
 export const list = [
   {
       "mat_id": 2555,

@@ -8,15 +8,25 @@
 	let query = $page.url.searchParams.get('query') || '';
 	let loading = false;
 
+	const sanitize = (s: string) => replace(s, /[<>]/g, '');
+
+	/**
+	 * synchronously updates the input field
+	 */
 	function updateDisplay(e: Event & { currentTarget: EventTarget & HTMLInputElement }) {
 		if (e.target !== null) {
 			const target = e.target as HTMLInputElement;
 			query = sanitize(target.value);
 		}
 	}
-
-	const sanitize = (s: string) => replace(s, /[<>]/g, '');
-
+	/**
+	 * Handle doing the search by making a new request
+	 * to our app server by updating url query string.
+	 * Our server will then handle reaching out to Hamilton's 
+	 * api for search results. 
+	 * 
+	 * Debounce these updates to avoid hitting their api too often.
+	 */
 	let scheduledCall: ReturnType<typeof setTimeout>;
 	const delayMs = 500;
 	const debouncedSearch = (e: Event & { currentTarget: EventTarget & HTMLInputElement }) => {

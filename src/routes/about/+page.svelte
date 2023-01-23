@@ -1,5 +1,5 @@
 <script>
-  export let hamiltonUrl = 'https://www.hamilton.ca/home-neighbourhood/garbage-recycling/blue-box-recycling/recycling';
+  let hamiltonUrl = 'https://www.hamilton.ca/home-neighbourhood/garbage-recycling/blue-box-recycling/recycling';
 </script>
 
 <h1>About</h1>

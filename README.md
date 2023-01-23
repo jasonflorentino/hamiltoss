@@ -1,18 +1,25 @@
-# Where does this go?
+# ♻️ Hamiltoss
 
 _Find out if something is recyclable in Hamilton_
 
 ## TODO
 
-- Add search functionality
+- Current search functionality may not be idiomatic...
 - Add styling
   - system ui dark mode from the start please
     - Reference plant server for implementation
-- Better name?
+
+## Setup
+
+This is a SvelteKit app made with their TypeScript starter:
+
+[Svelte Kit Docs](https://kit.svelte.dev/docs/introduction)
+
+[Svelte Docs](https://svelte.dev/docs)
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've installed dependencies with `npm install`, start the development server:
 
 ```bash
 npm run dev
