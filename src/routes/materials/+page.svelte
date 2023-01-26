@@ -16,3 +16,9 @@
 		{/each}
 	</ul>
 </main>
+
+<style>
+	:global(body) {
+		@apply bg-gray-900 text-slate-200 mx-auto max-w-7xl selection:bg-emerald-200 selection:text-cyan-700;
+	}
+</style>

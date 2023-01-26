@@ -10,11 +10,11 @@
 	$: imageData = head(data.images);
 </script>
 
-<main class="p-5">
-	<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-emerald-300">{data.name}</h1>
+<main class="p-5 mb-10">
+	<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-emerald-300 mb-4">{data.name}</h1>
 
 	{#if imageData}
-		<img src={IMG_ROOT + imageData.path} alt={`${data.name} Credit: ${imageData.credits}`} />
+		<img src={IMG_ROOT + imageData.path} alt={`${data.name} Credit: ${imageData.credits}`} class='mb-5'/>
 	{/if}
 
 	<section class="max-w-2xl">
@@ -41,3 +41,9 @@
 		</ul>
 	{/if}
 </main>
+
+<style>
+	:global(body) {
+		@apply bg-gray-900 text-slate-200 mx-auto max-w-7xl selection:bg-emerald-200 selection:text-cyan-700;
+	}
+</style>

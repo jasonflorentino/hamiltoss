@@ -46,7 +46,7 @@
 	};
 </script>
 
-<main class="p-5">
+<main class="p-5 mb-10">
 	<h1 class="text-6xl md:text-7xl lg:text-8xl mb-5 font-black text-emerald-400">🗑 Hamiltoss</h1>
 	<p class="font-medium text-cyan-400 text-lg md:text-xl lg:text-2xl">
 		Find out if something is compostable, recyclable, or bin-able in Hamilton.
@@ -69,7 +69,12 @@
 
 	{#if query}
 		<p class="text-gray-300 font-regular mb-3 text-sm">
-			Searching for: <span class="text-cyan-400 font-bold">{query}</span>
+			{#if !loading && data.results && data.results.length}
+				<span>{data.results.length} results for: </span>
+			{:else}
+				<span>Searching for:</span>
+			{/if}
+			<span class="text-cyan-400 font-bold">{query}</span>
 		</p>
 		{#if loading}
 			<p>Loading...</p>
@@ -96,6 +101,6 @@
 
 <style>
 	:global(body) {
-		@apply bg-gray-900 text-slate-200 mx-auto max-w-7xl;
+		@apply bg-gray-900 text-slate-200 mx-auto max-w-7xl selection:bg-emerald-200 selection:text-cyan-700;
 	}
 </style>

@@ -10,7 +10,13 @@
 		<p class="leading-relaxed">
 			Easily find if something is recyclable in Hamilton. More information, and the source of this
 			data, can be found at
-			<a href={hamiltonUrl} target="_blank" rel="noreferrer">The City of Hamilton's website.</a>
+			<a href={hamiltonUrl} target="_blank" rel="noreferrer" class="underline underline-offset-4 decoration-emerald-300">The City of Hamilton's website.</a>
 		</p>
 	</div>
 </main>
+
+<style>
+	:global(body) {
+		@apply bg-gray-900 text-slate-200 mx-auto max-w-7xl selection:bg-emerald-200 selection:text-cyan-700;
+	}
+</style>
