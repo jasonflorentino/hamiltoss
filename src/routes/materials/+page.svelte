@@ -1,12 +1,12 @@
 <script lang="ts">
 	import type { PageData } from './$types';
-	import { sortBy } from 'lodash-es'
+	import { sortBy } from 'lodash-es';
 	export let data: PageData;
 </script>
 
 <main class="p-5">
-	<h1 class="text-4xl font-bold text-emerald-300">All Materials</h1>
-	<p class="text-sm font-medium">Last Updated: 2022-01-16</p>
+	<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-emerald-300">All Materials</h1>
+	<p class="text-sm font-medium">This list was last pulled on 2022-01-16</p>
 
 	<ul class="mt-5 divide-emerald-400 divide-y">
 		{#each sortBy(data.items, ['mat_nm']) as item}

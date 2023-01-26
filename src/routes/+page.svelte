@@ -47,11 +47,13 @@
 </script>
 
 <main class="p-5">
-	<h1 class="text-6xl mb-5 font-black text-emerald-400">🗑 Hamiltoss</h1>
-	<p class="font-medium text-cyan-400 text-lg">Find out if something is compostable, recyclable, or bin-able in Hamilton.</p>
+	<h1 class="text-6xl md:text-7xl lg:text-8xl mb-5 font-black text-emerald-400">🗑 Hamiltoss</h1>
+	<p class="font-medium text-cyan-400 text-lg md:text-xl lg:text-2xl">
+		Find out if something is compostable, recyclable, or bin-able in Hamilton.
+	</p>
 
 	<form class="my-6">
-		<label for="search-query" class='block mb-2 text-sm'>
+		<label for="search-query" class="block mb-2 text-sm md:text-base lg:text-lg">
 			What do you want to toss?
 		</label>
 		<input
@@ -66,7 +68,9 @@
 	</form>
 
 	{#if query}
-		<p class="text-gray-300 font-regular mb-3 text-sm">Searching for: <span class="text-cyan-400 font-bold">{query}</span></p>
+		<p class="text-gray-300 font-regular mb-3 text-sm">
+			Searching for: <span class="text-cyan-400 font-bold">{query}</span>
+		</p>
 		{#if loading}
 			<p>Loading...</p>
 		{:else if data.results && data.results.length}
@@ -74,7 +78,12 @@
 				{#each data.results as result}
 					<li class="py-3">
 						<a href="/materials/{result.id}" class="text-xl text-cyan-400">
-							<p>{result.name} <span class="text-lg text-gray-400">{result.synonym ? `(${result.synonym})` : ''}</span></p>
+							<p>
+								{result.name}
+								<span class="text-lg text-gray-400"
+									>{result.synonym ? `(${result.synonym})` : ''}</span
+								>
+							</p>
 						</a>
 					</li>
 				{/each}
@@ -87,6 +96,6 @@
 
 <style>
 	:global(body) {
-		@apply bg-gray-900 text-slate-200;
+		@apply bg-gray-900 text-slate-200 mx-auto max-w-7xl;
 	}
 </style>
