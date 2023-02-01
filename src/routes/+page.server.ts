@@ -16,8 +16,15 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 		try {
 			const res = await fetch(searchRoute + encodeURIComponent(query));
 			const payload: SearchResponse = await res.json();
-			let hasFetchOne = false;
+			let hasFetchedOne = false;
 			if (payload?.content?.results) {
+				// Decorate results with their `disposal_header`:
+				// First check if we have the disposal_header already cached in memory.
+				// If not, request ONE of them to add on, and store it in cache.
+				// This lets us be nice and avoid  making a spike of request their api
+				// in the case we have a long list of search results.
+				// Make sure to get/set the IDs as strings in the cache Map!
+				// (We'll also be populating this as clients hit individual pages)
 				results = [
 					...(await Promise.all(
 						map(payload.content.results, async (result: SearchResultType) => {
@@ -25,8 +32,8 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 							if (DisposalCache.get(String(result.id))) {
 								disposal_header = DisposalCache.get(String(result.id));
 							} else {
-								if (!hasFetchOne) {
-									hasFetchOne = true;
+								if (!hasFetchedOne) {
+									hasFetchedOne = true;
 									const res = await fetch(`${CITY_ROOT}/material/${result.id}.json`);
 									const payload = await res.json();
 									if (payload?.content?.response?.materialDetails) {
@@ -53,7 +60,6 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 	}
 
 	return {
-		results,
-		DisposalCache
+		results
 	};
 };

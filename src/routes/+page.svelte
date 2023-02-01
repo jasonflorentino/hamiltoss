@@ -5,11 +5,12 @@
 
 	export let data: PageData;
 
+	// Use this for controlled input
+	// initialize with query from URL
 	let query = $page.url.searchParams.get('query') || '';
 	let loading = false;
 
 	const sanitize = (s: string) => replace(s, /[<>]/g, '');
-
 	/**
 	 * synchronously updates the input field
 	 */
@@ -38,6 +39,7 @@
 				if (target.value) {
 					window.location.assign(`?query=${encodeURIComponent(sanitize(target.value))}`);
 				} else {
+					// User has cleared the input
 					window.location.assign('/');
 				}
 			}
@@ -52,6 +54,7 @@
 		Find out if something is compostable, recyclable, or bin-able in Hamilton.
 	</p>
 
+	<!-- Search Input -->
 	<form class="my-6">
 		<label for="search-query" class="block mb-2 text-sm md:text-base lg:text-lg">
 			What do you want to toss?
@@ -67,6 +70,7 @@
 		/>
 	</form>
 
+	<!-- Results List -->
 	{#if query}
 		<p class="text-gray-300 font-regular mb-3 text-sm">
 			{#if !loading && data.results && data.results.length}
@@ -85,11 +89,13 @@
 						<a href="/materials/{result.id}" class="text-xl text-cyan-400">
 							<p>
 								{result.name}
-								<span class="text-base text-gray-400"
-									>{result.synonym ? `(${result.synonym})` : ''}</span
-								>
+								<span class="text-base text-gray-400">
+									{result.synonym ? `(${result.synonym})` : ''}
+								</span>
 								{#if result.disposal_header}
-									<span class="ml-1 text-sm bg-cyan-400 rounded-md py-1 px-2 font-bold text-gray-800 w-fit">
+									<span
+										class="ml-1 text-sm bg-cyan-400 rounded-md py-1 px-2 font-bold text-gray-800 w-fit"
+									>
 										{result.disposal_header}
 									</span>
 								{/if}

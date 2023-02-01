@@ -6,7 +6,9 @@
 
 <main class="p-5">
 	<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-emerald-300">
-		All Materials<span class="text-xs  md:text-sm align-top font-medium text-cyan-300">{data.items.length}</span>
+		All Materials<span class="text-xs  md:text-sm align-top font-medium text-cyan-300">
+			{data.items.length}
+		</span>
 	</h1>
 	<p class="mt-1 text-sm font-medium">This list was last pulled on 2022-01-16</p>
 

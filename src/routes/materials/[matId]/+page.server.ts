@@ -10,6 +10,9 @@ export const load: PageServerLoad = async ({ fetch, params }) => {
 
 	if (payload?.content?.response?.materialDetails) {
 		const { materialDetails } = payload.content.response;
+		// Since we're getting the details anyway, cache the
+		// disposal_header so that we can use it to augment
+		// future search results.
 		DisposalCache.set(params.matId, materialDetails.disposal_header);
 		return materialDetails as MaterialDetails;
 	}

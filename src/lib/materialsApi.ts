@@ -1,6 +1,12 @@
 export const IMG_ROOT = 'https://cdn.recyclecoach.com/gallery/';
 
-export const DisposalCache = new Map();
+/**
+ * Use this global object as an in memory cache 
+ * for the disposal_headers. We'll use it to augment
+ * search results without making multiple subsequent 
+ * requests to their api.
+ */
+export const DisposalCache = new Map<string, string>();
 
 export type LinkType =
 	| 'remote' // subpath to be prefixed by the CITY endpoint (swap .path with .json)
