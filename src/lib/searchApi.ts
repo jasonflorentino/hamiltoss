@@ -17,3 +17,7 @@ export type SearchResponse = {
     response_key: string; // pretty sure it's a UUID
   }
 }
+
+export type DecoratedSearchResultType = SearchResultType & {
+  disposal_header: string | null;
+}

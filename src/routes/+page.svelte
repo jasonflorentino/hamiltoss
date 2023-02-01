@@ -85,9 +85,14 @@
 						<a href="/materials/{result.id}" class="text-xl text-cyan-400">
 							<p>
 								{result.name}
-								<span class="text-lg text-gray-400"
+								<span class="text-base text-gray-400"
 									>{result.synonym ? `(${result.synonym})` : ''}</span
 								>
+								{#if result.disposal_header}
+									<span class="ml-1 text-sm bg-cyan-400 rounded-md py-1 px-2 font-bold text-gray-800 w-fit">
+										{result.disposal_header}
+									</span>
+								{/if}
 							</p>
 						</a>
 					</li>

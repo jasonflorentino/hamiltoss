@@ -1,5 +1,7 @@
 export const IMG_ROOT = 'https://cdn.recyclecoach.com/gallery/';
 
+export const DisposalCache = new Map();
+
 export type LinkType =
 	| 'remote' // subpath to be prefixed by the CITY endpoint (swap .path with .json)
 	| 'external'; // full url to an extenal site
