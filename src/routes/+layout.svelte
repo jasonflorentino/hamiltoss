@@ -28,13 +28,13 @@
 
 <!-- main navigation -->
 <nav
-	class="bg-emerald-500 divide-emerald-400 divide-x-2 font-medium grid grid-cols-3 m-2 lg:m-4 place-content-center rounded-md text-emerald-50"
+	class="m-2 grid grid-cols-3 place-content-center divide-x-2 divide-emerald-400 rounded-md bg-emerald-500 font-medium text-emerald-50 lg:m-4"
 >
 	{#each links as { href, label }}
 		<div>
 			<a
 				{href}
-				class="flex justify-center items-center h-12 lg:h-18 text-md lg:text-lg  {href ===
+				class="lg:h-18 text-md flex h-12 items-center justify-center lg:text-lg  {href ===
 				$page.route.id
 					? 'underline underline-offset-4'
 					: ''}  transition ease-in-out hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:transform-none"

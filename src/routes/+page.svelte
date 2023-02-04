@@ -48,15 +48,15 @@
 	};
 </script>
 
-<main class="p-5 mb-10">
-	<h1 class="text-6xl md:text-7xl lg:text-8xl mb-5 font-black text-emerald-400">🗑 Hamiltoss</h1>
-	<p class="font-medium text-cyan-400 text-lg md:text-xl lg:text-2xl">
+<main class="mb-10 p-5">
+	<h1 class="mb-5 text-6xl font-black text-emerald-400 md:text-7xl lg:text-8xl">🗑 Hamiltoss</h1>
+	<p class="text-lg font-medium text-cyan-400 md:text-xl lg:text-2xl">
 		Find out if something is compostable, recyclable, or bin-able in Hamilton.
 	</p>
 
 	<!-- Search Input -->
 	<form class="my-6">
-		<label for="search-query" class="block mb-2 text-sm md:text-base lg:text-lg">
+		<label for="search-query" class="mb-2 block text-sm md:text-base lg:text-lg">
 			What do you want to toss?
 		</label>
 		<input
@@ -65,24 +65,24 @@
 			value={query}
 			on:input={updateDisplay}
 			on:input={debouncedSearch}
-			class="bg-gray-800 border border-solid border-emerald-100 max-w-lg px-3 py-2 rounded-md text-lg w-full"
+			class="w-full max-w-lg rounded-md border border-solid border-emerald-100 bg-gray-800 px-3 py-2 text-lg"
 		/>
 	</form>
 
 	<!-- Results List -->
 	{#if query}
-		<p class="text-gray-300 font-regular mb-3 text-sm">
+		<p class="font-regular mb-3 text-sm text-gray-300">
 			{#if !loading && data.results && data.results.length}
 				<span>{data.results.length} result{data.results.length === 1 ? '' : 's'} for: </span>
 			{:else}
 				<span>Searching for:</span>
 			{/if}
-			<span class="text-cyan-400 font-bold">{query}</span>
+			<span class="font-bold text-cyan-400">{query}</span>
 		</p>
 		{#if loading}
 			<p>Loading...</p>
 		{:else if data.results && data.results.length}
-			<ul class="divide-emerald-400 divide-y">
+			<ul class="divide-y divide-emerald-400">
 				{#each data.results as result}
 					<li class="py-3">
 						<a href="/materials/{result.id}" class="text-xl text-cyan-400">
@@ -93,7 +93,7 @@
 								</span>
 								{#if result.disposal_header}
 									<span
-										class="ml-1 text-sm bg-cyan-400 rounded-md py-1 px-2 font-bold text-gray-800 w-fit"
+										class="ml-1 w-fit rounded-md bg-cyan-400 py-1 px-2 text-sm font-bold text-gray-800"
 									>
 										{result.disposal_header}
 									</span>
@@ -111,6 +111,6 @@
 
 <style>
 	:global(body) {
-		@apply bg-gray-900 text-slate-200 mx-auto max-w-7xl selection:bg-emerald-200 selection:text-cyan-700;
+		@apply mx-auto max-w-7xl bg-gray-900 text-slate-200 selection:bg-emerald-200 selection:text-cyan-700;
 	}
 </style>

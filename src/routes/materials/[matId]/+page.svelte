@@ -10,22 +10,28 @@
 	);
 	$: imageData = head(data.images);
 
-	let title = TITLE + ` | ${data.name}`
+	let title = TITLE + ` | ${data.name}`;
 </script>
 
 <svelte:head>
 	<title>{title}</title>
 </svelte:head>
 
-<main class="p-5 mb-10">
-	<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-emerald-300 mb-4">{data.name}</h1>
+<main class="mb-10 p-5">
+	<h1 class="mb-4 text-4xl font-bold text-emerald-300 md:text-5xl lg:text-6xl">{data.name}</h1>
 
 	{#if imageData}
-		<img src={IMG_ROOT + imageData.path} alt={`${data.name} Credit: ${imageData.credits}`} class='mb-5'/>
+		<img
+			src={IMG_ROOT + imageData.path}
+			alt={`${data.name} Credit: ${imageData.credits}`}
+			class="mb-5"
+		/>
 	{/if}
 
 	<section class="max-w-2xl">
-		<h2 class="bg-cyan-400 rounded-md lg:rounded-lg py-1 lg:py-2 px-3 lg:px-4 font-bold text-xl text-gray-800 w-fit mb-3">
+		<h2
+			class="mb-3 w-fit rounded-md bg-cyan-400 py-1 px-3 text-xl font-bold text-gray-800 lg:rounded-lg lg:py-2 lg:px-4"
+		>
 			{data.disposal_header}
 		</h2>
 
@@ -41,7 +47,7 @@
 				<li>
 					<a
 						href="/materials/{mat.mat_id}"
-						class="text-lg underline underline-offset-4 decoration-emerald-300">{mat.mat_nm}</a
+						class="text-lg underline decoration-emerald-300 underline-offset-4">{mat.mat_nm}</a
 					>
 				</li>
 			{/each}
@@ -51,6 +57,6 @@
 
 <style>
 	:global(body) {
-		@apply bg-gray-900 text-slate-200 mx-auto max-w-7xl selection:bg-emerald-200 selection:text-cyan-700;
+		@apply mx-auto max-w-7xl bg-gray-900 text-slate-200 selection:bg-emerald-200 selection:text-cyan-700;
 	}
 </style>
