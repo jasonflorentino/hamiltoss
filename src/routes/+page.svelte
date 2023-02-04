@@ -74,7 +74,7 @@
 	{#if query}
 		<p class="text-gray-300 font-regular mb-3 text-sm">
 			{#if !loading && data.results && data.results.length}
-				<span>{data.results.length} results for: </span>
+				<span>{data.results.length} result{data.results.length === 1 ? '' : 's'} for: </span>
 			{:else}
 				<span>Searching for:</span>
 			{/if}
