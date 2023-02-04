@@ -1,9 +1,9 @@
 export const IMG_ROOT = 'https://cdn.recyclecoach.com/gallery/';
 
 /**
- * Use this global object as an in memory cache 
+ * Use this global object as an in memory cache
  * for the disposal_headers. We'll use it to augment
- * search results without making multiple subsequent 
+ * search results without making multiple subsequent
  * requests to their api.
  */
 export const DisposalCache = new Map<string, string>();

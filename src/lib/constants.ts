@@ -1,1 +1,1 @@
-export const TITLE = 'Hamiltoss'
+export const TITLE = 'Hamiltoss';
