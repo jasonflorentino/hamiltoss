@@ -2,7 +2,13 @@
 	import type { PageData } from './$types';
 	import { sortBy } from 'lodash-es';
 	export let data: PageData;
+
+	$: title = document.title + ' | All Materials';
 </script>
+
+<svelte:head>
+	<title>{title}</title>
+</svelte:head>
 
 <main class="p-5">
 	<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-emerald-300">

@@ -1,7 +1,13 @@
 <script>
 	let hamiltonUrl =
 		'https://www.hamilton.ca/home-neighbourhood/garbage-recycling/blue-box-recycling/recycling';
+
+	$: title = document.title + ' | All Materials';
 </script>
+
+<svelte:head>
+	<title>{title}</title>
+</svelte:head>
 
 <main class="p-5">
 	<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-emerald-300 mb-4">About</h1>
@@ -10,7 +16,13 @@
 		<p class="leading-relaxed">
 			Easily find if something is recyclable in Hamilton. More information, and the source of this
 			data, can be found at
-			<a href={hamiltonUrl} target="_blank" rel="noreferrer" class="underline underline-offset-4 decoration-emerald-300">The City of Hamilton's website.</a>
+			<a
+				href={hamiltonUrl}
+				target="_blank"
+				rel="noreferrer"
+				class="underline underline-offset-4 decoration-emerald-300"
+				>The City of Hamilton's website.</a
+			>
 		</p>
 	</div>
 </main>
