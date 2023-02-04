@@ -25,7 +25,7 @@
 	{/if}
 
 	<section class="max-w-2xl">
-		<h2 class="bg-cyan-400 rounded py-1 px-3 font-bold text-xl text-gray-800 w-fit mb-3">
+		<h2 class="bg-cyan-400 rounded-md lg:rounded-lg py-1 lg:py-2 px-3 lg:px-4 font-bold text-xl text-gray-800 w-fit mb-3">
 			{data.disposal_header}
 		</h2>
 
