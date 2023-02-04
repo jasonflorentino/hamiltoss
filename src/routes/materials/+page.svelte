@@ -1,10 +1,12 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { sortBy } from 'lodash-es';
-	import { TITLE } from '$lib/constants';
+	import { TITLE, toRelativeDateString } from '$lib';
 	export let data: PageData;
 
 	let title = TITLE + ' | All Materials';
+	let lastFetchedDate = '2023-01-16';
+	let relativeLastFetched = toRelativeDateString(Date.now() - new Date(lastFetchedDate).getTime());
 </script>
 
 <svelte:head>
@@ -17,7 +19,9 @@
 			{data.items.length}
 		</span>
 	</h1>
-	<p class="mt-1 text-sm font-medium">This list was last pulled on 2022-01-16</p>
+	<p class="mt-1 text-sm font-medium">
+		This list was last pulled {relativeLastFetched} ({lastFetchedDate})
+	</p>
 
 	<ul class="mt-5 divide-emerald-400 divide-y">
 		{#each sortBy(data.items, ['mat_nm']) as item}

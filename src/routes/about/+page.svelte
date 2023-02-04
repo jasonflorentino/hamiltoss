@@ -1,5 +1,5 @@
 <script>
-	import { TITLE } from '$lib/constants';
+	import { TITLE } from '$lib';
 
 	let hamiltonUrl =
 		'https://www.hamilton.ca/home-neighbourhood/garbage-recycling/blue-box-recycling/recycling';

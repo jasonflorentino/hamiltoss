@@ -2,7 +2,7 @@
 	import type { PageData } from './$types';
 	import { compact, head, map, replace, split } from 'lodash-es';
 	import { IMG_ROOT } from '$lib/materialsApi';
-	import { TITLE } from '$lib/constants';
+	import { TITLE } from '$lib';
 
 	export let data: PageData;
 	$: bodyText = compact(

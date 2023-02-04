@@ -1,7 +1,7 @@
 <script>
 	import '../app.postcss';
 	import { page } from '$app/stores';
-	import { TITLE } from '$lib/constants';
+	import { TITLE } from '$lib';
 
 	let title = TITLE;
 
