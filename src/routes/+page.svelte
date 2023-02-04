@@ -60,7 +60,6 @@
 			What do you want to toss?
 		</label>
 		<input
-			autofocus
 			type="text"
 			id="search-query"
 			value={query}

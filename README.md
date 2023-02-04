@@ -2,6 +2,8 @@
 
 _Find out if something is recyclable in Hamilton_
 
+Special thanks to Will for the name.
+
 ## Tech intro
 
 This is a SvelteKit app made with their TypeScript starter
