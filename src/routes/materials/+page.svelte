@@ -2,6 +2,7 @@
 	import type { PageData } from './$types';
 	import { sortBy } from 'lodash-es';
 	import { TITLE, toRelativeDateString } from '$lib';
+	import { MainHeading } from '$lib/components';
 	export let data: PageData;
 
 	let title = TITLE + ' | All Materials';
@@ -14,11 +15,12 @@
 </svelte:head>
 
 <main class="p-5">
-	<h1 class="text-4xl font-bold text-emerald-300 md:text-5xl lg:text-6xl">
+	<MainHeading>
 		All Materials<span class="align-top  text-xs font-medium text-cyan-300 md:text-sm">
 			{data.items.length}
 		</span>
-	</h1>
+	</MainHeading>
+
 	<p class="mt-1 text-sm font-medium">
 		This list was last pulled {relativeLastFetched} ({lastFetchedDate})
 	</p>

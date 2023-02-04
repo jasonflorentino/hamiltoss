@@ -1,5 +1,6 @@
 <script>
 	import { TITLE } from '$lib';
+	import { MainHeading } from '$lib/components';
 
 	let hamiltonUrl =
 		'https://www.hamilton.ca/home-neighbourhood/garbage-recycling/blue-box-recycling/recycling';
@@ -12,7 +13,7 @@
 </svelte:head>
 
 <main class="p-5">
-	<h1 class="mb-4 text-4xl font-bold text-emerald-300 md:text-5xl lg:text-6xl">About</h1>
+	<MainHeading>About</MainHeading>
 
 	<div class="max-w-3xl text-2xl font-light md:text-3xl lg:text-4xl">
 		<p class="leading-relaxed">

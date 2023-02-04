@@ -2,6 +2,7 @@
 	import type { PageData } from './$types';
 	import { compact, head, map, replace, split } from 'lodash-es';
 	import { IMG_ROOT } from '$lib/materialsApi';
+	import { MainHeading } from '$lib/components';
 	import { TITLE } from '$lib';
 
 	export let data: PageData;
@@ -18,7 +19,7 @@
 </svelte:head>
 
 <main class="mb-10 p-5">
-	<h1 class="mb-4 text-4xl font-bold text-emerald-300 md:text-5xl lg:text-6xl">{data.name}</h1>
+	<MainHeading>{data.name}</MainHeading>
 
 	{#if imageData}
 		<img
