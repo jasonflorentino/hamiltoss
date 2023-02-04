@@ -48,11 +48,6 @@
 	};
 </script>
 
-<svelte:head>
-	<title>Hamiltoss</title>
-	<meta name="description" content="Easily find if something is recyclable in Hamilton." />
-</svelte:head>
-
 <main class="p-5 mb-10">
 	<h1 class="text-6xl md:text-7xl lg:text-8xl mb-5 font-black text-emerald-400">🗑 Hamiltoss</h1>
 	<p class="font-medium text-cyan-400 text-lg md:text-xl lg:text-2xl">

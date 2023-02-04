@@ -1,8 +1,10 @@
 <script>
+	import { TITLE } from '$lib/constants';
+
 	let hamiltonUrl =
 		'https://www.hamilton.ca/home-neighbourhood/garbage-recycling/blue-box-recycling/recycling';
 
-	$: title = document.title + ' | All Materials';
+	let title = TITLE + ' | About';
 </script>
 
 <svelte:head>

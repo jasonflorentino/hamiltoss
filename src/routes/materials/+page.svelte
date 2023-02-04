@@ -1,9 +1,10 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { sortBy } from 'lodash-es';
+	import { TITLE } from '$lib/constants';
 	export let data: PageData;
 
-	$: title = document.title + ' | All Materials';
+	let title = TITLE + ' | All Materials';
 </script>
 
 <svelte:head>

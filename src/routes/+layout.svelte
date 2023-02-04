@@ -1,6 +1,9 @@
 <script>
 	import '../app.postcss';
 	import { page } from '$app/stores';
+	import { TITLE } from '$lib/constants';
+
+	let title = TITLE;
 
 	const links = [
 		{
@@ -17,6 +20,11 @@
 		}
 	];
 </script>
+
+<svelte:head>
+	<title>{title}</title>
+	<meta name="description" content="Easily find if something is recyclable in Hamilton." />
+</svelte:head>
 
 <nav
 	class="bg-emerald-500 divide-emerald-400 divide-x-2 font-medium grid grid-cols-3 m-2 lg:m-4 place-content-center rounded-md text-emerald-50"
