@@ -2,7 +2,7 @@
 	import type { PageData } from './$types';
 	import { compact, head, map, replace, split } from 'lodash-es';
 	import { IMG_ROOT } from '$lib/materialsApi';
-	import { MainHeading } from '$lib/components';
+	import { MainHeading, DisposalHeader } from '$lib/components';
 	import { TITLE } from '$lib';
 
 	export let data: PageData;
@@ -30,10 +30,10 @@
 	{/if}
 
 	<section class="max-w-2xl">
-		<h2
-			class="mb-3 w-fit rounded-md bg-cyan-400 py-1 px-3 text-xl font-bold text-gray-800 lg:rounded-lg lg:py-2 lg:px-4"
-		>
-			{data.disposal_header}
+		<h2 class="mb-3 rounded-md md:rounded-lg lg:rounded-xl">
+			<DisposalHeader class="py-1 px-3 text-xl font-bold md:py-2 md:px-3  lg:py-2 lg:px-4">
+				{data.disposal_header}
+			</DisposalHeader>
 		</h2>
 
 		{#each bodyText as line}

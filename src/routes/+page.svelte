@@ -2,6 +2,7 @@
 	import { replace } from 'lodash-es';
 	import { page } from '$app/stores';
 	import type { PageData } from './$types';
+	import { DisposalHeader } from '$lib/components';
 
 	export let data: PageData;
 
@@ -49,7 +50,11 @@
 </script>
 
 <main class="mb-10 p-5">
-	<h1 class="mb-5 text-6xl font-black text-emerald-400 md:text-7xl lg:text-8xl">🗑 Hamiltoss</h1>
+	<h1 class="mb-5 text-6xl font-black md:text-7xl lg:text-8xl">
+		🗑 <span class="bg-gradient-to-r from-emerald-300 to-emerald-500 bg-clip-text text-transparent"
+			>Hamiltoss</span
+		>
+	</h1>
 	<p class="text-lg font-medium text-cyan-400 md:text-xl lg:text-2xl">
 		Find out if something is compostable, recyclable, or bin-able in Hamilton.
 	</p>
@@ -92,11 +97,9 @@
 									{result.synonym ? `(${result.synonym})` : ''}
 								</span>
 								{#if result.disposal_header}
-									<span
-										class="ml-1 w-fit rounded-md bg-cyan-400 py-1 px-2 text-sm font-bold text-gray-800"
-									>
+									<DisposalHeader class="ml-1">
 										{result.disposal_header}
-									</span>
+									</DisposalHeader>
 								{/if}
 							</p>
 						</a>
