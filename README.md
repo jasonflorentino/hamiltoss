@@ -16,6 +16,8 @@ Styling is done with [Tailwind](https://tailwindcss.com/docs/installation) and w
 
 ## Developing
 
+You'll need at least `node 18`.
+
 Once you've installed dependencies with `npm install`, start the development server:
 
 ```bash
@@ -30,9 +32,12 @@ http://localhost:5173/
 
 From there you can edit files, save them, and it'll update in the browser.
 
+- Code is formatted with Prettier.
+- I'm using the `prettier-plugin-tailwindcss` Prettier plugin to automatically sort tailwind classes in code.
+
 ## Deployment
 
 - Deployed on netlify: https://hamiltoss.netlify.app/
   - Added `adapter-netlify` for this.
-- Can run `npm run build` locally to check if the Netlify deloy will fail. Or just push and see.
+- Can run `npm run build` locally to check if the deloy will fail. Or just push and see.
   - You can preview the production build with `npm run preview`.

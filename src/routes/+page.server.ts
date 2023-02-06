@@ -45,10 +45,10 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 							}
 							return {
 								...result,
-								disposal_header
+								disposal_header,
 							};
 						})
-					))
+					)),
 				] as DecoratedSearchResultType[];
 			}
 		} catch (e) {
@@ -60,6 +60,6 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 	}
 
 	return {
-		results
+		results,
 	};
 };
