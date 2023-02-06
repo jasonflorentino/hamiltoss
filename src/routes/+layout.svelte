@@ -8,16 +8,16 @@
 	const links = [
 		{
 			label: 'Home',
-			href: '/'
+			href: '/',
 		},
 		{
 			label: 'All Materials',
-			href: '/materials'
+			href: '/materials',
 		},
 		{
 			label: 'About',
-			href: '/about'
-		}
+			href: '/about',
+		},
 	];
 </script>
 
@@ -47,7 +47,10 @@
 <slot />
 
 <style>
+	:global(*) {
+		@apply selection:bg-emerald-200 selection:text-cyan-700;
+	}
 	:global(body) {
-		@apply mx-auto max-w-7xl bg-gradient-to-b from-slate-900 to-gray-900 text-slate-200 selection:bg-emerald-200 selection:text-cyan-700;
+		@apply mx-auto max-w-7xl bg-gradient-to-b from-slate-900 to-gray-900 text-slate-200;
 	}
 </style>
