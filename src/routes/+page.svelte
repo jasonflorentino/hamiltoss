@@ -68,6 +68,7 @@
 			type="text"
 			id="search-query"
 			value={query}
+			placeholder="Type to search"
 			on:input={updateDisplay}
 			on:input={debouncedSearch}
 			class="w-full max-w-lg rounded-md border border-solid border-emerald-100 bg-gray-800 px-3 py-2 text-lg"

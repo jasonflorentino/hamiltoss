@@ -4,9 +4,10 @@ import type { SearchResponse, SearchResultType, DecoratedSearchResultType } from
 
 import { error } from '@sveltejs/kit';
 import { map } from 'lodash-es';
-import { searchRoute } from '$lib/searchApi';
-import { DisposalCache } from '$lib/materialsApi';
+
 import { CITY_ROOT } from '$lib/cityApi';
+import { DisposalCache } from '$lib/materialsApi';
+import { searchRoute } from '$lib/searchApi';
 
 export const load: PageServerLoad = async ({ fetch, url }) => {
 	const query = url.searchParams.get('query') || '';
