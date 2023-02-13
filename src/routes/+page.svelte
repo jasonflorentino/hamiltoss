@@ -1,10 +1,16 @@
 <script lang="ts">
 	import { replace } from 'lodash-es';
 	import { page } from '$app/stores';
-	import type { PageData } from './$types';
+	import type { PageData, ActionData } from './$types';
 	import { DisposalHeader } from '$lib/components';
 
 	export let data: PageData;
+	export let form: ActionData;
+
+	$: {
+		console.log('component data', data);
+		console.log('component form', form);
+	}
 
 	// Use this for controlled input
 	// initialize with query from URL
@@ -21,32 +27,6 @@
 			query = sanitize(target.value);
 		}
 	}
-	/**
-	 * Handle doing the search by making a new request
-	 * to our app server by updating url query string.
-	 * Our server will then handle reaching out to Hamilton's
-	 * api for search results.
-	 *
-	 * Debounce these updates to avoid hitting their api too often.
-	 */
-	let scheduledCall: ReturnType<typeof setTimeout>;
-	const delayMs = 500;
-	const debouncedSearch = (e: Event & { currentTarget: EventTarget & HTMLInputElement }) => {
-		clearTimeout(scheduledCall);
-		loading = true;
-		scheduledCall = setTimeout(() => {
-			if (e.target !== null) {
-				const target = e.target as HTMLInputElement;
-				if (target.value) {
-					window.location.assign(`?query=${encodeURIComponent(sanitize(target.value))}`);
-				} else {
-					// User has cleared the input
-					window.location.assign('/');
-				}
-			}
-			loading = false;
-		}, delayMs);
-	};
 </script>
 
 <main class="mb-10 p-5">
@@ -60,19 +40,20 @@
 	</p>
 
 	<!-- Search Input -->
-	<form class="my-6">
-		<label for="search-query" class="mb-2 block text-sm md:text-base lg:text-lg">
+	<form method="POST" action="?/search" class="my-6">
+		<label for="query" class="mb-2 block text-sm md:text-base lg:text-lg">
 			What do you want to toss?
 		</label>
 		<input
 			type="text"
-			id="search-query"
+			id="query"
+			name="query"
 			value={query}
 			placeholder="Type to search"
 			on:input={updateDisplay}
-			on:input={debouncedSearch}
 			class="w-full max-w-lg rounded-md border border-solid border-emerald-100 bg-gray-800 px-3 py-2 text-lg"
 		/>
+		<button>Search</button>
 	</form>
 
 	<!-- Results List -->
