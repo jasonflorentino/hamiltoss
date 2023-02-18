@@ -1,12 +1,8 @@
-export const IMG_ROOT = 'https://cdn.recyclecoach.com/gallery/';
+// Imports 
 
-/**
- * Use this global object as an in memory cache
- * for the disposal_headers. We'll use it to augment
- * search results without making multiple subsequent
- * requests to their api.
- */
-export const DisposalCache = new Map<string, string>();
+import { CITY_ROOT } from '$lib/cityApi';
+
+// Types
 
 export type LinkType =
 	| 'remote' // subpath to be prefixed by the CITY endpoint (swap .path with .json)
@@ -48,3 +44,25 @@ export type MaterialDetails = {
 	what_happens_next: null | string; // HTML string, usually <p> tag
 	links: Link[]; // User configured?
 };
+
+// Lib
+
+export const IMG_ROOT = 'https://cdn.recyclecoach.com/gallery/';
+
+/**
+ * Use this global object as an in memory cache
+ * for the disposal_headers. We'll use it to augment
+ * search results without making multiple subsequent
+ * requests to their api.
+ */
+export const DisposalCache = new Map<string, string>();
+
+export async function fetchMaterialDetails(id: number) {
+	const res = await fetch(`${CITY_ROOT}/material/${id}.json`);
+	const payload = await res.json();
+	let details: MaterialDetails | null= null;
+	if (payload?.content?.response?.materialDetails) {
+		details = payload.content.response.materialDetails as MaterialDetails;
+	}
+	return details;
+}
