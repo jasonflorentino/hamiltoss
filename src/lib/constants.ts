@@ -1,1 +1,27 @@
 export const TITLE = 'Hamiltoss';
+
+export const SEARCH_SUGGESTIONS = [
+  'Balloons',
+  'Batteries',
+  'Candles',
+  'Cardboard Boxes',
+  'Coffee Cups',
+  'Crayons',
+  'Face Masks',
+  'Foam',
+  'Glass',
+  'Glow Sticks',
+  'Ice Packs',
+  'Kitty Litter',
+  'License Plats',
+  'Light Bulbs',
+  'Mail',
+  'Milk Cartons',
+  'Paint',
+  'Paper Towel',
+  'Pizza Boxes',
+  'Plants',
+  'Styrofoam',
+  'Take-out Containers',
+  'Wood',
+]

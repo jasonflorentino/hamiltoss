@@ -1,13 +1,15 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 	import { sortBy } from 'lodash-es';
-	import { TITLE, toRelativeDateString } from '$lib';
+	import { Constants, Utils } from '$lib';
 	import { MainHeading } from '$lib/components';
 	export let data: PageData;
 
-	let title = TITLE + ' | All Materials';
+	let title = Constants.TITLE + ' | All Materials';
 	let lastFetchedDate = '2023-01-16';
-	let relativeLastFetched = toRelativeDateString(Date.now() - new Date(lastFetchedDate).getTime());
+	let relativeLastFetched = Utils.toRelativeDateString(
+		Date.now() - new Date(lastFetchedDate).getTime()
+	);
 </script>
 
 <svelte:head>
@@ -27,7 +29,7 @@
 
 	<ul class="mt-5 divide-y divide-emerald-400">
 		{#each sortBy(data.items, ['mat_nm']) as item}
-			<li class="py-3">
+			<li class="py-3 decoration-cyan-300 hover:underline hover:underline-offset-2">
 				<a href="/materials/{item.mat_id}" class="text-lg">{item.mat_nm}</a>
 			</li>
 		{/each}

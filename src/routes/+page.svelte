@@ -1,7 +1,8 @@
 <script lang="ts">
 	import type { PageData } from './$types';
 
-	import { replace } from 'lodash-es';
+	import { sample } from 'lodash-es';
+	import { Constants, Utils } from '$lib';
 	import { DisposalHeader } from '$lib/components';
 	import { page } from '$app/stores';
 
@@ -9,13 +10,10 @@
 	$: query = $page.url.searchParams.get('query');
 	$: inputValue = query || '';
 
-	const sanitize = (s: string) => replace(s, /[<>]/g, '');
-
 	function handleInput(e: Event & { currentTarget: EventTarget & HTMLInputElement }) {
 		if (e.target !== null) {
 			const target = e.target as HTMLInputElement;
-			inputValue = sanitize(target.value);
-			console.log('inputValue', inputValue);
+			inputValue = Utils.sanitize(target.value);
 		}
 	}
 </script>
@@ -49,11 +47,11 @@
 				name="query"
 				value={inputValue}
 				on:input|preventDefault={handleInput}
-				placeholder="Styrofoam"
+				placeholder={sample(Constants.SEARCH_SUGGESTIONS)}
 				class="w-full rounded-md border border-solid border-emerald-100 bg-gray-800 px-3 py-2 text-lg md:max-w-lg"
 			/>
 			<button
-				class="mt-3 w-full rounded-md bg-emerald-300 px-3 py-2 text-lg font-bold text-emerald-800 md:mt-0 md:ml-3 md:w-[200px]"
+				class="mt-3 w-full rounded-md bg-emerald-300 px-3 py-2 text-lg font-bold text-emerald-800 hover:bg-emerald-200 md:mt-0 md:ml-3 md:w-[200px]"
 				>Search</button
 			>
 		</div>
