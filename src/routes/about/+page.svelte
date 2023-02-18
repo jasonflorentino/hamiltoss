@@ -29,7 +29,7 @@
 		</p>
 	</section>
 	<section>
-		<p class="mt-5 max-w-sm text-xs leading-relaxed text-cyan-400">
+		<p class="mt-5 max-w-sm text-xs font-medium leading-relaxed text-cyan-400">
 			This site was created and is maintained by some guy who lives in Hamilton. It is in no way
 			affiliated with the City of Hamilton, or their keeper of recycle sorting data.
 		</p>
