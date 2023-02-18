@@ -1,74 +1,75 @@
 <script lang="ts">
+	import type { PageData } from './$types';
+
 	import { replace } from 'lodash-es';
-	import { page } from '$app/stores';
-	import type { PageData, ActionData } from './$types';
 	import { DisposalHeader } from '$lib/components';
+	import { page } from '$app/stores';
 
 	export let data: PageData;
-	export let form: ActionData;
-
-	$: {
-		console.log('component data', data);
-		console.log('component form', form);
-	}
-
-	// Use this for controlled input
-	// initialize with query from URL
-	let query = $page.url.searchParams.get('query') || '';
-	let loading = false;
+	$: query = $page.url.searchParams.get('query');
+	$: inputValue = query || '';
 
 	const sanitize = (s: string) => replace(s, /[<>]/g, '');
-	/**
-	 * synchronously updates the input field
-	 */
-	function updateDisplay(e: Event & { currentTarget: EventTarget & HTMLInputElement }) {
+
+	function handleInput(e: Event & { currentTarget: EventTarget & HTMLInputElement }) {
 		if (e.target !== null) {
 			const target = e.target as HTMLInputElement;
-			query = sanitize(target.value);
+			inputValue = sanitize(target.value);
+			console.log('inputValue', inputValue);
 		}
 	}
 </script>
 
-<main class="mb-10 p-5">
-	<h1 class="mb-5 text-6xl font-black md:text-7xl lg:text-8xl">
-		🗑 <span class="bg-gradient-to-r from-emerald-300 to-emerald-500 bg-clip-text text-transparent"
-			>Hamiltoss</span
-		>
-	</h1>
-	<p class="text-lg font-medium text-cyan-400 md:text-xl lg:text-2xl">
-		Find out if something is compostable, recyclable, or bin-able in Hamilton.
-	</p>
+<main class="mb-10 p-5 lg:p-10">
+	<div class="md:my-10">
+		<h1 class="mb-5 text-6xl font-black md:text-center md:text-7xl lg:text-8xl">
+			🗑 <span class="bg-gradient-to-r from-emerald-300 to-emerald-500 bg-clip-text text-transparent"
+				>Hamiltoss</span
+			>
+		</h1>
+		<p class="text-lg font-medium text-cyan-400 md:text-center md:text-xl lg:text-2xl">
+			Find out if something is compostable, recyclable, or bin-able in Hamilton.
+		</p>
+	</div>
 
 	<!-- Search Input -->
-	<form method="POST" action="?/search" class="my-6">
+	<form
+		method="GET"
+		action="/"
+		data-sveltekit-noscroll
+		class="my-6 md:mx-auto md:mb-10 md:max-w-xl"
+	>
 		<label for="query" class="mb-2 block text-sm md:text-base lg:text-lg">
 			What do you want to toss?
 		</label>
-		<input
-			type="text"
-			id="query"
-			name="query"
-			value={query}
-			placeholder="Type to search"
-			on:input={updateDisplay}
-			class="w-full max-w-lg rounded-md border border-solid border-emerald-100 bg-gray-800 px-3 py-2 text-lg"
-		/>
-		<button>Search</button>
+		<div class="md:flex">
+			<input
+				type="text"
+				id="query"
+				name="query"
+				value={inputValue}
+				on:input|preventDefault={handleInput}
+				placeholder="Styrofoam"
+				class="w-full rounded-md border border-solid border-emerald-100 bg-gray-800 px-3 py-2 text-lg md:max-w-lg"
+			/>
+			<button
+				class="mt-3 w-full rounded-md bg-emerald-300 px-3 py-2 text-lg font-bold text-emerald-800 md:mt-0 md:ml-3 md:w-[200px]"
+				>Search</button
+			>
+		</div>
 	</form>
 
 	<!-- Results List -->
 	{#if query}
 		<p class="font-regular mb-3 text-sm text-gray-300">
-			{#if !loading && data.results && data.results.length}
+			{#if data.results && data.results.length}
 				<span>{data.results.length} result{data.results.length === 1 ? '' : 's'} for: </span>
 			{:else}
 				<span>Searching for:</span>
 			{/if}
 			<span class="font-bold text-cyan-400">{query}</span>
 		</p>
-		{#if loading}
-			<p>Loading...</p>
-		{:else if data.results && data.results.length}
+		{#if data.results && data.results.length}
 			<ul class="divide-y divide-emerald-400">
 				{#each data.results as result}
 					<li class="py-3">
