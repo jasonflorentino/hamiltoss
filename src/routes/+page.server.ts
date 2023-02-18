@@ -1,24 +1,21 @@
 import type { PageServerLoad } from './$types';
-import type { MaterialDetails } from '$lib/materialsApi';
-import type { SearchResponse, SearchResultType, DecoratedSearchResultType } from '$lib/searchApi';
+import type { SearchResultType, DecoratedSearchResultType } from '$lib/searchApi';
 
 import { error } from '@sveltejs/kit';
 import { map } from 'lodash-es';
 
-import { CITY_ROOT } from '$lib/cityApi';
-import { DisposalCache } from '$lib/materialsApi';
-import { searchRoute } from '$lib/searchApi';
+import { DisposalCache, fetchMaterialDetails } from '$lib/materialsApi';
+import { fetchSearchResults } from '$lib/searchApi';
 
-export const load: PageServerLoad = async ({ fetch, url }) => {
+export const load: PageServerLoad = async ({url}) => {
 	const query = url.searchParams.get('query') || '';
-	let results: DecoratedSearchResultType[] = [];
+	let results: DecoratedSearchResultType[] | SearchResultType[] = [];
 
 	if (query) {
 		try {
-			const res = await fetch(searchRoute + encodeURIComponent(query));
-			const payload: SearchResponse = await res.json();
 			let hasFetchedOne = false;
-			if (payload?.content?.results) {
+			results = await fetchSearchResults(query)
+			if (results.length) {
 				// Decorate results with their `disposal_header`:
 				// First check if we have the disposal_header already cached in memory.
 				// If not, request ONE of them to add on, and store it in cache.
@@ -28,19 +25,17 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 				// (We'll also be populating this as clients hit individual pages)
 				results = [
 					...(await Promise.all(
-						map(payload.content.results, async (result: SearchResultType) => {
+						map(results, async (result: SearchResultType) => {
 							let disposal_header = null;
 							if (DisposalCache.get(String(result.id))) {
 								disposal_header = DisposalCache.get(String(result.id));
 							} else {
 								if (!hasFetchedOne) {
 									hasFetchedOne = true;
-									const res = await fetch(`${CITY_ROOT}/material/${result.id}.json`);
-									const payload = await res.json();
-									if (payload?.content?.response?.materialDetails) {
-										const detail = payload.content.response.materialDetails as MaterialDetails;
-										DisposalCache.set(String(result.id), detail.disposal_header);
-										disposal_header = detail.disposal_header;
+									const details = await fetchMaterialDetails(result.id)
+									if (details !== null) {
+										DisposalCache.set(String(result.id), details.disposal_header);
+										disposal_header = details.disposal_header;
 									}
 								}
 							}
@@ -58,9 +53,9 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 				`Couldn't get this info: ${e instanceof Error ? e.message : 'Unknown error'}`
 			);
 		}
-	}
+	} 
 
 	return {
-		results,
+		results
 	};
 };

@@ -1,4 +1,4 @@
-export const CITY_ROOT = `https://api.recyclecoach.com/ws-p520-dHAM/`;
+// Types
 
 export type DepotDetail = {
 	drop_depot_id: number;
@@ -23,3 +23,7 @@ export type DepotResponse = {
 		};
 	};
 };
+
+// Lib 
+
+export const CITY_ROOT = `https://api.recyclecoach.com/ws-p520-dHAM/`;

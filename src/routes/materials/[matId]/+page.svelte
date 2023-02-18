@@ -3,7 +3,7 @@
 	import { compact, head, map, replace, split } from 'lodash-es';
 	import { IMG_ROOT } from '$lib/materialsApi';
 	import { MainHeading, DisposalHeader } from '$lib/components';
-	import { TITLE } from '$lib';
+	import { Constants } from '$lib';
 
 	export let data: PageData;
 	$: bodyText = compact(
@@ -11,7 +11,7 @@
 	);
 	$: imageData = head(data.images);
 
-	let title = TITLE + ` | ${data.name}`;
+	let title = Constants.TITLE + ` | ${data.name}`;
 </script>
 
 <svelte:head>

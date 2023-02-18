@@ -1,9 +1,9 @@
 <script>
 	import '../app.postcss';
 	import { page } from '$app/stores';
-	import { TITLE } from '$lib';
+	import { Constants } from '$lib';
 
-	let title = TITLE;
+	let title = Constants.TITLE;
 
 	const links = [
 		{
