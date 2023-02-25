@@ -1,9 +1,12 @@
 <script>
 	import '../app.postcss';
 	import { page } from '$app/stores';
-	import { Constants } from '$lib';
+	import { Constants, Utils } from '$lib';
+	import { PickupNotice } from '$lib/components';
 
-	let title = Constants.TITLE;
+	const { TITLE, PICKUP_CHANGES } = Constants;
+
+	const specialPickupDetail = Utils.getSpecialPickupDetail(PICKUP_CHANGES);
 
 	const links = [
 		{
@@ -22,9 +25,13 @@
 </script>
 
 <svelte:head>
-	<title>{title}</title>
+	<title>{TITLE}</title>
 	<meta name="description" content="Easily find if something is recyclable in Hamilton." />
 </svelte:head>
+
+{#if specialPickupDetail}
+	<PickupNotice {...specialPickupDetail} />
+{/if}
 
 <!-- main navigation -->
 <nav
