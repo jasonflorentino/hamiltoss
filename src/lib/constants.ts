@@ -15,7 +15,7 @@ export const SEARCH_SUGGESTIONS = [
 	'Glow Sticks',
 	'Ice Packs',
 	'Kitty Litter',
-	'License Plats',
+	'License Plates',
 	'Light Bulbs',
 	'Mail',
 	'Milk Cartons',

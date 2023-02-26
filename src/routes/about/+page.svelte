@@ -28,10 +28,26 @@
 			>
 		</p>
 	</section>
-	<section>
-		<p class="mt-5 max-w-sm text-xs font-medium leading-relaxed text-cyan-400">
+	<section class="max-w-sm text-xs font-medium leading-relaxed text-cyan-400 md:max-w-lg">
+		<p class="mt-5">
 			This site was created and is maintained by some guy who lives in Hamilton. It is in no way
 			affiliated with the City of Hamilton, or their keeper of recycle sorting data.
+		</p>
+		<p class="mt-2">
+			If you'd like to see the source code, it is publicly available on
+			<a
+				href="https://github.com/jasonflorentino/hamiltoss"
+				class="text-cyan-200 hover:text-cyan-400"
+				target="_blank"
+				rel="noreferrer">GitHub.</a
+			>
+			Feel free to open a new
+			<a
+				href="https://github.com/jasonflorentino/hamiltoss/issues"
+				class="text-cyan-200 hover:text-cyan-400"
+				target="_blank"
+				rel="noreferrer">Issue</a
+			> there if you find any errors or bugs. Thanks for stopping by!
 		</p>
 	</section>
 </main>
