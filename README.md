@@ -2,6 +2,8 @@
 
 _Find out if something is recyclable in Hamilton_
 
+<img src="demo/screenshot.png" alt="A screen shot of Hamiltoss site" width="800" />
+
 Special thanks to Will for the name.
 
 ## Tech intro
