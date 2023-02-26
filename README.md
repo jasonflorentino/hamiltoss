@@ -7,11 +7,12 @@ _Find out if something is recyclable in Hamilton_
 This is a site that I made because I found it difficult to look up how to sort my garbage and recycling in Hamilton. And I wanted to learn Svelte and SvelteKit. Special thanks to Will for the name.
 
 Thanks for stopping by!
+
 — Jason, Feb 2023
 
 ## Tech intro
 
-This is a [SvelteKit](https://kit.svelte.dev/) app made with their TypeScript starter. Styling is done with [Tailwind](https://tailwindcss.com/) and was added to the project using this handy repo [svelte-add/tailwindcss](https://github.com/svelte-add/tailwindcss). Code is formatted with Prettier. I'm using the `prettier-plugin-tailwindcss` Prettier plugin to automatically sort tailwind classes in code.
+This is a [SvelteKit](https://kit.svelte.dev/) app made with their TypeScript starter. Styling is done with [Tailwind](https://tailwindcss.com/) and was added to the project using this handy repo [svelte-add/tailwindcss](https://github.com/svelte-add/tailwindcss). Code is formatted with Prettier. I'm using the Prettier plugin `prettier-plugin-tailwindcss` to automatically sort tailwind classes in code.
 
 [Svelte Kit Docs](https://kit.svelte.dev/docs/introduction)
 
