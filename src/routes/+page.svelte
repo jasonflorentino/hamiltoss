@@ -18,6 +18,10 @@
 	}
 </script>
 
+<svelte:head>
+	<title>{Constants.TITLE}</title>
+</svelte:head>
+
 <main class="mb-10 p-5 lg:p-10">
 	<div class="md:my-10">
 		<h1 class="mb-5 text-6xl font-black md:text-center md:text-7xl lg:text-8xl">
@@ -48,12 +52,14 @@
 				value={inputValue}
 				on:input|preventDefault={handleInput}
 				placeholder={sample(Constants.SEARCH_SUGGESTIONS)}
-				class="w-full rounded-md border border-solid border-emerald-100 bg-gray-800 px-3 py-2 text-lg md:max-w-lg"
+				class="blur:border-emerald-300 w-full rounded-md border-2 border-solid border-emerald-800 bg-gray-800 px-3 py-2 text-lg focus:outline-emerald-500 md:max-w-lg"
 			/>
 			<button
-				class="mt-3 w-full rounded-md bg-emerald-300 px-3 py-2 text-lg font-bold text-emerald-800 hover:bg-emerald-200 md:mt-0 md:ml-3 md:w-[200px]"
-				>Search</button
+				disabled={!inputValue}
+				class="mt-3 w-full rounded-md bg-emerald-300 px-3 py-2 text-lg font-bold text-emerald-800 hover:bg-emerald-200 disabled:bg-gray-700 disabled:text-gray-500 md:mt-0 md:ml-3 md:w-[200px]"
 			>
+				Search
+			</button>
 		</div>
 	</form>
 
@@ -71,7 +77,7 @@
 			<ul class="divide-y divide-emerald-400">
 				{#each data.results as result}
 					<li class="py-3">
-						<a href="/materials/{result.id}" class="text-xl text-cyan-400">
+						<a href="/materials/{result.id}" class="text-xl text-cyan-400 hover:text-cyan-300">
 							<p>
 								{result.name}
 								<span class="text-base text-gray-400">

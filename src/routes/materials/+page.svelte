@@ -29,7 +29,7 @@
 
 	<ul class="mt-5 divide-y divide-emerald-400">
 		{#each sortBy(data.items, ['mat_nm']) as item}
-			<li class="py-3 decoration-cyan-300 hover:underline hover:underline-offset-2">
+			<li class="py-3 hover:text-gray-400">
 				<a href="/materials/{item.mat_id}" class="text-lg">{item.mat_nm}</a>
 			</li>
 		{/each}

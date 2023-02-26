@@ -23,7 +23,7 @@
 				href={hamiltonUrl}
 				target="_blank"
 				rel="noreferrer"
-				class="underline decoration-emerald-300 underline-offset-4"
+				class="underline decoration-emerald-300 underline-offset-4 hover:text-emerald-200"
 				>The City of Hamilton's website.</a
 			>
 		</p>

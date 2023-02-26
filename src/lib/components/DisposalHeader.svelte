@@ -43,7 +43,7 @@
 
 <span
 	bind:this={el}
-	class={`w-fit rounded-md py-1 px-2 text-sm font-bold ${colorClasses} ${propClasses}`}
+	class={`w-fit whitespace-nowrap	rounded-md py-1 px-2 text-sm font-bold ${colorClasses} ${propClasses}`}
 >
 	<slot />
 </span>
