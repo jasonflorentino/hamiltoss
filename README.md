@@ -4,7 +4,10 @@ _Find out if something is recyclable in Hamilton_
 
 <img src="demo/screenshot.png" alt="A screen shot of Hamiltoss site" width="800" />
 
-This is a site that I made because I found it difficult to look up how to sort my garbage and recycling in Hamilton. Special thanks to Will for the name.
+This is a site that I made because I found it difficult to look up how to sort my garbage and recycling in Hamilton. And I wanted to learn Svelte and SvelteKit. Special thanks to Will for the name.
+
+Thanks for stopping by!
+— Jason, Feb 2023
 
 ## Tech intro
 
