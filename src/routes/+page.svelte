@@ -84,9 +84,7 @@
 									{result.synonym ? `(${result.synonym})` : ''}
 								</span>
 								{#if result.disposal_header}
-									<DisposalHeader class="ml-1">
-										{result.disposal_header}
-									</DisposalHeader>
+									<DisposalHeader text={result.disposal_header} class="ml-1" />
 								{/if}
 							</p>
 						</a>

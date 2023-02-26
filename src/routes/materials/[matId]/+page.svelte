@@ -31,9 +31,10 @@
 
 	<section class="max-w-2xl">
 		<h2 class="mb-3 rounded-md md:rounded-lg lg:rounded-xl">
-			<DisposalHeader class="py-1 px-3 text-xl font-bold md:py-2 md:px-3  lg:py-2 lg:px-4">
-				{data.disposal_header}
-			</DisposalHeader>
+			<DisposalHeader
+				text={data.disposal_header}
+				class="py-1 px-3 text-xl font-bold md:py-2 md:px-3 lg:py-2 lg:px-4"
+			/>
 		</h2>
 
 		{#each bodyText as line}
