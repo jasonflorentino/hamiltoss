@@ -39,7 +39,7 @@ From there you can edit files, save them, and it'll update in the browser.
 
 ## Deployment
 
-- Deployed on netlify: https://hamiltoss.netlify.app/
+- Deployed on netlify: https://hamiltoss.fyi/
   - Added `adapter-netlify` for this.
 - Can run `npm run build` locally to check if the deloy will fail. Or just push and see.
   - You can preview the production build with `npm run preview`.
