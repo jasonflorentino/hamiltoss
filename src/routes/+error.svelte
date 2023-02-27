@@ -1,4 +1,7 @@
 <script>
+	/**
+	 * Catchall page for errors
+	 */
 	import { page } from '$app/stores';
 
 	let highlight = '';

@@ -1,4 +1,7 @@
 <script lang="ts">
+	/**
+	 * Renders the home page route.
+	 */
 	import type { PageData } from './$types';
 
 	import { sample } from 'lodash-es';
@@ -23,6 +26,7 @@
 </svelte:head>
 
 <main class="mb-10 p-5 lg:p-10">
+	<!-- Hero Content -->
 	<div class="md:my-10">
 		<h1 class="mb-5 text-6xl font-black md:text-center md:text-7xl lg:text-8xl">
 			🗑 <span class="bg-gradient-to-r from-emerald-300 to-emerald-500 bg-clip-text text-transparent"
@@ -63,8 +67,9 @@
 		</div>
 	</form>
 
-	<!-- Results List -->
+	<!-- Search Results -->
 	{#if query}
+		<!-- Search metadata -->
 		<p class="font-regular mb-3 text-sm text-gray-300">
 			{#if data.results && data.results.length}
 				<span>{data.results.length} result{data.results.length === 1 ? '' : 's'} for: </span>
@@ -73,6 +78,7 @@
 			{/if}
 			<span class="font-bold text-cyan-400">{query}</span>
 		</p>
+		<!-- List of results -->
 		{#if data.results && data.results.length}
 			<ul class="divide-y divide-emerald-400">
 				{#each data.results as result}

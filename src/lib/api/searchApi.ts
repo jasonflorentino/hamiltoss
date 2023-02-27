@@ -1,3 +1,11 @@
+// Imports
+
+import type { Fetch } from '$lib/types';
+
+// Constants
+
+const NATIVE_FETCH = fetch;
+
 // Types
 
 export type SearchResultType = {
@@ -26,10 +34,16 @@ export type DecoratedSearchResultType = SearchResultType & {
 
 export const searchRoute = `https://api.recyclecoach.com/8/material-list.json?q=`;
 
-export async function fetchSearchResults (query: string) {
+export async function fetchSearchResults({
+	fetch = NATIVE_FETCH,
+	query,
+}: {
+	fetch?: Fetch;
+	query: string;
+}) {
 	const res = await fetch(searchRoute + encodeURIComponent(query));
 	const payload: SearchResponse = await res.json();
-	let results:SearchResultType[] = []
+	let results: SearchResultType[] = [];
 	if (payload?.content?.results) {
 		results = payload.content.results;
 	}

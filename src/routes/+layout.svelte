@@ -1,4 +1,10 @@
 <script>
+	/**
+	 * Global layout.
+	 * Adds the main nav to the top of all pages.
+	 * Also handles displaying a notice about special
+	 * pickups if applicable.
+	 */
 	import '../app.postcss';
 	import { page } from '$app/stores';
 	import { Constants, Utils } from '$lib';

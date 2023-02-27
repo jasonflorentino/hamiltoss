@@ -1,6 +1,9 @@
 <script lang="ts">
 	/**
 	 * DisposalHeader.svelte
+	 *
+	 * Renders differently coloured flairs
+	 * based on the prop `text`
 	 */
 	let propClasses = '';
 	export { propClasses as class }; // Let users specify 'class'

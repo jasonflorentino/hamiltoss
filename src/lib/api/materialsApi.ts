@@ -1,6 +1,12 @@
-// Imports 
+// Imports
 
-import { CITY_ROOT } from '$lib/cityApi';
+import type { Fetch } from '$lib/types'
+
+import { API } from '$lib';
+
+// Constants
+
+const NATIVE_FETCH = fetch;
 
 // Types
 
@@ -8,18 +14,18 @@ export type LinkType =
 	| 'remote' // subpath to be prefixed by the CITY endpoint (swap .path with .json)
 	| 'external'; // full url to an extenal site
 
-export type Image = {
+type MaterialDetailsImage = {
 	path: string;
 	thumb: string;
 	credits: string;
 };
 
-export type RelatedMaterial = {
+type RelatedMaterial = {
 	mat_id: number;
 	mat_nm: string;
 };
 
-export type Link = {
+type MaterialDetailsLink = {
 	drawer_title: string;
 	sphere?: string;
 	type: string;
@@ -36,13 +42,13 @@ export type MaterialDetails = {
 	density: string;
 	disposal_header: string;
 	disposal_body: string; // HTML string, usually <p> tag
-	images: Image[];
+	images: MaterialDetailsImage[];
 	related_materials: RelatedMaterial[];
 	collId: number;
 	coll_symbol_shape: string;
 	coll_symbol_colour: string; // hex number, no hash
 	what_happens_next: null | string; // HTML string, usually <p> tag
-	links: Link[]; // User configured?
+	links: MaterialDetailsLink[]; // User configured?
 };
 
 // Lib
@@ -57,10 +63,16 @@ export const IMG_ROOT = 'https://cdn.recyclecoach.com/gallery/';
  */
 export const DisposalCache = new Map<string, string>();
 
-export async function fetchMaterialDetails(id: number) {
-	const res = await fetch(`${CITY_ROOT}/material/${id}.json`);
+export async function fetchMaterialDetails({
+	fetch = NATIVE_FETCH,
+	id,
+}: {
+	fetch?: Fetch
+	id: number;
+}) {
+	const res = await fetch(`${API.CITY_ROOT}/material/${id}.json`);
 	const payload = await res.json();
-	let details: MaterialDetails | null= null;
+	let details: MaterialDetails | null = null;
 	if (payload?.content?.response?.materialDetails) {
 		details = payload.content.response.materialDetails as MaterialDetails;
 	}
