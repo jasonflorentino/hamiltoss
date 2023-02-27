@@ -20,10 +20,13 @@
 				colorClasses = 'bg-yellow-300 text-zinc-800';
 				break;
 			case 'Electronic Waste':
-				colorClasses = 'bg-amber-400 text-zinc-900';
+				colorClasses = 'bg-amber-300 text-zinc-900';
 				break;
 			case 'Garbage':
 				colorClasses = 'bg-zinc-600 text-zinc-200';
+				break;
+			case 'Garden Plants & Weeds':
+				colorClasses = 'bg-lime-900 text-lime-300';
 				break;
 			case 'Hazardous Waste':
 			case 'Household Hazardous Waste':
@@ -37,6 +40,9 @@
 				break;
 			case 'Reusable':
 				colorClasses = 'bg-amber-100 text-yellow-900';
+				break;
+			case 'Seasonal Items':
+				colorClasses = 'bg-orange-500 text-orange-100';
 				break;
 			case 'Special Items':
 				colorClasses = 'bg-violet-700 text-violet-200';
