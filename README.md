@@ -10,6 +10,14 @@ Thanks for stopping by!
 
 — Jason, Feb 2023
 
+## Features
+- 🔍 Search for items that you're curious about sorting.
+- 👀 See a preview in the search results of where something might be sorted.
+- 🖼 View more details about specific items, and see a list of related items.
+- 📚 Browse a list of all available results.
+- ⏱ Recent searches are stored locally in your browser. (I've found myself looking up things more than once.)
+- ☝️ See an alert around notable times in the pickup calendar. (Like when collection is a day later.)
+
 ## Tech intro
 
 This is a [SvelteKit](https://kit.svelte.dev/) app made with their TypeScript starter. Styling is done with [Tailwind](https://tailwindcss.com/) and was added to the project using this handy repo [svelte-add/tailwindcss](https://github.com/svelte-add/tailwindcss). Code is formatted with Prettier. I'm using the Prettier plugin `prettier-plugin-tailwindcss` to automatically sort tailwind classes in code.
