@@ -4,14 +4,32 @@
 	 */
 	import type { PageData } from './$types';
 
-	import { sample } from 'lodash-es';
+	import { sample, lowerCase, filter } from 'lodash-es';
 	import { Constants, Utils } from '$lib';
 	import { DisposalHeader } from '$lib/components';
+	import { localstorage } from '$lib/stores/localstorage';
 	import { page } from '$app/stores';
 
 	export let data: PageData;
+
+	const MAX = 4;
+	const KEY = 'recentSearches';
+
 	$: query = $page.url.searchParams.get('query');
 	$: inputValue = query || '';
+
+	$: recentSearches = JSON.parse($localstorage?.getItem(KEY) || '[]').slice(0, MAX);
+
+	// Handle updating recent searches in localstorage
+	$: {
+		if (query) {
+			recentSearches = [
+				query,
+				...filter(recentSearches, (word: string) => lowerCase(word) !== lowerCase(query || '')),
+			];
+			$localstorage?.setItem(KEY, JSON.stringify(recentSearches));
+		}
+	}
 
 	function handleInput(e: Event & { currentTarget: EventTarget & HTMLInputElement }) {
 		if (e.target !== null) {
@@ -38,67 +56,80 @@
 		</p>
 	</div>
 
-	<!-- Search Input -->
-	<form
-		method="GET"
-		action="/"
-		data-sveltekit-noscroll
-		class="my-6 md:mx-auto md:mb-10 md:max-w-xl"
-	>
-		<label for="query" class="mb-2 block text-sm md:text-base lg:text-lg">
-			What do you want to toss?
-		</label>
-		<div class="md:flex">
-			<input
-				type="text"
-				id="query"
-				name="query"
-				value={inputValue}
-				on:input|preventDefault={handleInput}
-				placeholder={sample(Constants.SEARCH_SUGGESTIONS)}
-				class="blur:border-emerald-300 w-full rounded-md border-2 border-solid border-emerald-800 bg-gray-800 px-3 py-2 text-lg focus:outline-emerald-500 md:max-w-lg"
-			/>
-			<button
-				disabled={!inputValue}
-				class="mt-3 w-full rounded-md bg-emerald-300 px-3 py-2 text-lg font-bold text-emerald-800 hover:bg-emerald-200 disabled:bg-gray-700 disabled:text-gray-500 md:mt-0 md:ml-3 md:w-[200px]"
-			>
-				Search
-			</button>
-		</div>
-	</form>
+	<div class="md:mx-auto md:mb-10 md:max-w-xl">
+		<!-- Search Input -->
+		<form method="GET" action="/" data-sveltekit-noscroll class="mt-6">
+			<label for="query" class="mb-2 block text-sm md:text-base lg:text-lg">
+				What do you want to toss?
+			</label>
+			<div class="md:flex">
+				<input
+					type="text"
+					id="query"
+					name="query"
+					value={inputValue}
+					on:input|preventDefault={handleInput}
+					placeholder={sample(Constants.SEARCH_SUGGESTIONS)}
+					class="blur:border-emerald-300 w-full rounded-md border-2 border-solid border-emerald-800 bg-gray-800 px-3 py-2 text-lg hover:border-emerald-700 focus:outline-emerald-500 md:max-w-lg"
+				/>
+				<button
+					disabled={!inputValue}
+					class="mt-3 w-full rounded-md bg-emerald-300 px-3 py-2 text-lg font-bold text-emerald-800 hover:bg-emerald-200 disabled:bg-gray-700 disabled:text-gray-500 md:mt-0 md:ml-3 md:w-[200px]"
+				>
+					Search
+				</button>
+			</div>
+		</form>
+
+		<!-- Recent Searches -->
+		{#if recentSearches.length}
+			<div class="mt-3">
+				{#each recentSearches as search}
+					<a
+						href={`/?query=${search}`}
+						class="mr-3 rounded-lg bg-emerald-300 py-1 px-3 text-sm text-emerald-800 hover:bg-emerald-200"
+					>
+						{search}
+					</a>
+				{/each}
+			</div>
+		{/if}
+	</div>
 
 	<!-- Search Results -->
 	{#if query}
-		<!-- Search metadata -->
-		<p class="font-regular mb-3 text-sm text-gray-300">
+		<div class="mt-6">
+			<!-- Search metadata -->
+			<p class="font-regular mb-3 text-sm text-gray-300">
+				{#if data.results && data.results.length}
+					<span>{data.results.length} result{data.results.length === 1 ? '' : 's'} for: </span>
+				{:else}
+					<span>Searching for:</span>
+				{/if}
+				<span class="font-bold text-cyan-400">{query}</span>
+			</p>
+			<!-- List of results -->
 			{#if data.results && data.results.length}
-				<span>{data.results.length} result{data.results.length === 1 ? '' : 's'} for: </span>
+				<ul class="divide-y divide-emerald-400">
+					{#each data.results as result}
+						<li class="py-3">
+							<a href="/materials/{result.id}" class="text-xl text-cyan-400 hover:text-cyan-300">
+								<p>
+									{result.name}
+									<span class="text-base text-gray-400">
+										{result.synonym ? `(${result.synonym})` : ''}
+									</span>
+									{#if result.disposal_header}
+										<DisposalHeader text={result.disposal_header} class="ml-1" />
+									{/if}
+								</p>
+							</a>
+						</li>
+					{/each}
+				</ul>
 			{:else}
-				<span>Searching for:</span>
+				<p>No results</p>
 			{/if}
-			<span class="font-bold text-cyan-400">{query}</span>
-		</p>
-		<!-- List of results -->
-		{#if data.results && data.results.length}
-			<ul class="divide-y divide-emerald-400">
-				{#each data.results as result}
-					<li class="py-3">
-						<a href="/materials/{result.id}" class="text-xl text-cyan-400 hover:text-cyan-300">
-							<p>
-								{result.name}
-								<span class="text-base text-gray-400">
-									{result.synonym ? `(${result.synonym})` : ''}
-								</span>
-								{#if result.disposal_header}
-									<DisposalHeader text={result.disposal_header} class="ml-1" />
-								{/if}
-							</p>
-						</a>
-					</li>
-				{/each}
-			</ul>
-		{:else}
-			<p>No results</p>
-		{/if}
+		</div>
 	{/if}
 </main>
