@@ -19,28 +19,31 @@ export function sanitize(s: string) {
 }
 
 /**
+ * Return the details of a special pickup event
+ * if it occurs soon, today, or recently.
+ *
  * Note this returns the first special date.
- * If two happen close together, we'll only display 
+ * If two happen close together, we'll only display
  * the first match.
  */
 export function getSpecialPickupDetail(specialPickups: SpecialPickupDetail[]) {
 	const now = dayjs();
 	for (const pickupDetail of specialPickups) {
 		const diffDays = dayjs(pickupDetail.date).diff(now, 'days');
-		if (diffDays <= 2 && diffDays >= -4) {
-			// special pickup is coming in the next 2 days 
-			// or is within 4 days ago
-			if (pickupDetail.affectedPeriod === 'day') {
-				// Only show notice if special pickup is coming.
-				// Stop showing as soon as the special day as past.
-				if (diffDays >= -1) {
-					return pickupDetail
-				} else {
-					return null
-				};
-			}
-			return pickupDetail;
+		// dont show this pickup if its more than 4 days ago
+		if (diffDays < -5) continue;
+		// dont show this pickup if its more than 2 days away
+		if (diffDays > 2) continue;
+		// this special pickup is coming in the next 2 days
+		// or is within the last 4 days
+		if (pickupDetail.affectedPeriod === 'day') {
+			// This pickup is only affects one day, only show it
+			// if it is upcoming, otherwise continue searching
+			if (diffDays >= -1) return pickupDetail;
+			else continue;
 		}
+		// return first matched pickup
+		return pickupDetail;
 	}
 	return null;
 }
