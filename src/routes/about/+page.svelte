@@ -55,20 +55,11 @@
 		</p>
 	</section>
 
-	<span
-		id="madeInHamilton"
-		class="rounded bg-emerald-200 px-2 py-1 text-xs font-medium uppercase tracking-wide text-emerald-600"
-	>
-		Made with 💖 in Hamilton
-	</span>
+	<div class="mt-10 border-t border-solid border-cyan-900">
+		<span
+			class="mt-4 inline-block rounded bg-emerald-200 px-2 py-1 text-xs font-medium uppercase tracking-wide text-emerald-600"
+		>
+			Made with 💖 in Hamilton
+		</span>
+	</div>
 </main>
-
-<style>
-	#madeInHamilton {
-		position: absolute;
-		bottom: 2rem;
-		left: 50%;
-		transform: translateX(-50%);
-		z-index: -1;
-	}
-</style>
