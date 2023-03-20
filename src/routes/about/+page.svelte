@@ -54,4 +54,21 @@
 			> if you find any errors or bugs. Thanks for stopping by!
 		</p>
 	</section>
+
+	<span
+		id="madeInHamilton"
+		class="rounded bg-emerald-200 px-2 py-1 text-xs font-medium uppercase tracking-wide text-emerald-600"
+	>
+		Made with 💖 in Hamilton
+	</span>
 </main>
+
+<style>
+	#madeInHamilton {
+		position: absolute;
+		bottom: 2rem;
+		left: 50%;
+		transform: translateX(-50%);
+		z-index: -1;
+	}
+</style>
