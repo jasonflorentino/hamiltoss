@@ -32,6 +32,12 @@
 			affiliated with the City of Hamilton, or their keeper of recycle sorting data.
 		</p>
 		<p class="mt-2">
+			It's also just a simple website. You don't need to make an account to use it! You also don't
+			need to provide personal information like your email or your home address. Sure, it means we
+			can't provide smart services like notifying you on your pickup date. But it also means that
+			your information stays yours.
+		</p>
+		<p class="mt-2">
 			The source code for this site is publicly available on
 			<a
 				href="https://github.com/jasonflorentino/hamiltoss"
