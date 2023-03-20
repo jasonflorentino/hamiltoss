@@ -6,7 +6,7 @@
 
 	import { sample, lowerCase, filter } from 'lodash-es';
 	import { Constants, Utils } from '$lib';
-	import { DisposalHeader } from '$lib/components';
+	import { DisposalHeader, RecentSearches } from '$lib/components';
 	import { localstorage } from '$lib/stores/localstorage';
 	import { page } from '$app/stores';
 
@@ -57,11 +57,15 @@
 	</div>
 
 	<div class="md:mx-auto md:mb-10 md:max-w-xl">
-		<!-- Search Input -->
 		<form method="GET" action="/" data-sveltekit-noscroll class="mt-6">
 			<label for="query" class="mb-2 block text-sm md:text-base lg:text-lg">
 				What do you want to toss?
 			</label>
+			<!-- Recent Searches mobile -->
+			<div class="mb-1 md:hidden">
+				<RecentSearches {recentSearches} />
+			</div>
+			<!-- Search Input -->
 			<div class="md:flex">
 				<input
 					type="text"
@@ -81,19 +85,10 @@
 			</div>
 		</form>
 
-		<!-- Recent Searches -->
-		{#if recentSearches.length}
-			<div class="mt-3">
-				{#each recentSearches as search}
-					<a
-						href={`/?query=${search}`}
-						class="mr-3 rounded-lg bg-emerald-300 py-1 px-3 text-sm text-emerald-800 hover:bg-emerald-200"
-					>
-						{search}
-					</a>
-				{/each}
-			</div>
-		{/if}
+		<!-- Recent Searches tablet/desktop -->
+		<div class="mt-3 hidden md:block">
+			<RecentSearches {recentSearches} />
+		</div>
 	</div>
 
 	<!-- Search Results -->
