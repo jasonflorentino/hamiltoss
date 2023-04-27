@@ -49,7 +49,7 @@ http://localhost:5173/
 Once running, you can edit files, save them, and it'll update in the browser.
 Make new commits on a feature branch. Branches on this remote will be built on netlify.
 
-You can run `npm run build` locally to check if the build and deloy will succeed. You can then preview the production build with `npm run preview`. Or just push and see.
+You can run `npm run build` locally to check if the build and deploy will succeed. You can then preview the production build with `npm run preview`. Or just push and see.
 
 ## Deployment
 
