@@ -18,7 +18,6 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 
 	if (query) {
 		try {
-			let hasFetchedOne = false;
 			results = await API.fetchSearchResults({ fetch, query });
 			if (results.length) {
 				// Decorate results with their `disposal_header`:
@@ -27,30 +26,29 @@ export const load: PageServerLoad = async ({ fetch, url }) => {
 				// This lets us be nice and avoid making a spike of requests their api
 				// in the case we have a long list of search results.
 				// Make sure to get/set the IDs as strings in the cache Map!
-				// (We'll also be populating this as clients hit individual pages)
-				results = [
-					...(await Promise.all(
-						map(results, async (result: SearchResultType) => {
-							let disposal_header = null;
-							if (API.DisposalCache.get(String(result.id))) {
-								disposal_header = API.DisposalCache.get(String(result.id));
-							} else {
-								if (!hasFetchedOne) {
-									hasFetchedOne = true;
-									const details = await API.fetchMaterialDetails({ fetch, id: result.id });
-									if (details !== null) {
-										API.DisposalCache.set(String(result.id), details.disposal_header);
-										disposal_header = details.disposal_header;
-									}
+				// (We'll also be populating this as clients hit the material pages)
+				let fetchedDisposalHeaders = 0;
+				results = (await Promise.all(
+					map(results, async (result: SearchResultType) => {
+						let disposal_header = null;
+						if (API.DisposalCache.has(String(result.id))) {
+							disposal_header = API.DisposalCache.get(String(result.id));
+						} else {
+							if (fetchedDisposalHeaders < 1) {
+								++fetchedDisposalHeaders;
+								const details = await API.fetchMaterialDetails({ fetch, id: result.id });
+								if (details !== null) {
+									API.DisposalCache.set(String(result.id), details.disposal_header);
+									disposal_header = details.disposal_header;
 								}
 							}
-							return {
-								...result,
-								disposal_header,
-							};
-						})
-					)),
-				] as DecoratedSearchResultType[];
+						}
+						return {
+							...result,
+							disposal_header,
+						};
+					})
+				)) as DecoratedSearchResultType[];
 			}
 		} catch (e) {
 			throw error(
