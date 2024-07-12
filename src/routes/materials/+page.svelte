@@ -6,7 +6,7 @@
 	export let data: PageData;
 
 	let title = Constants.TITLE + ' | All Materials';
-	let lastFetchedDate = '2023-01-16';
+	let lastFetchedDate = '2024-07-11';
 	let relativeLastFetched = Utils.toRelativeDateString(
 		Date.now() - new Date(lastFetchedDate).getTime()
 	);
