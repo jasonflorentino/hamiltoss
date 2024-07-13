@@ -28,9 +28,7 @@ export function toPickupNoticeText(
 	} else if (affectedPeriod === 'day') {
 		return 'For this day only pickup will be on the following day instead.';
 	} else if (affectedPeriod === 'yard') {
-		return `Leaf and yard waste pickup ${
-			dayjs(date).isBefore(dayjs().month(6)) ? 'resumes' : 'ends'
-		}.`;
+		return `Leaf and yard waste pickup ${dayjs(date).month() < 6 ? 'resumes' : 'ends'}.`;
 	}
 }
 
@@ -53,9 +51,9 @@ export function toListOfDays(days: DayName[]): string {
 		const outStr = out.reduce((o, d, i, a) => {
 			if (i + 1 === a.length) {
 				//last one
-				return `${o} and ${d}`;
+				return `${o} and ${d} `;
 			} else {
-				return `${o} ${d},`;
+				return `${o} ${d}, `;
 			}
 		}, '');
 		return outStr.trim();
