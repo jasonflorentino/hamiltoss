@@ -1,6 +1,6 @@
 import dayjs from 'dayjs';
 import { replace } from 'lodash-es';
-import type { SpecialPickupDetail } from './types';
+import type { DayName, SpecialPickupDetail } from './types';
 
 function toDays(ms: number) {
 	return ms / 1000 / 60 / 60 / 24;
@@ -12,6 +12,34 @@ function toDays(ms: number) {
 export function toRelativeDateString(durationMs: number) {
 	const time = Math.floor(toDays(durationMs));
 	return `${time} day${time === 1 ? '' : 's'} ago`;
+}
+
+export function toListOfDays(days: DayName[]): string {
+	const DAYS = {
+		sun: 'Sunday',
+		mon: 'Monday',
+		tue: 'Tuesday',
+		wed: 'Wednesday',
+		thu: 'Thursday',
+		fri: 'Friday',
+		sat: 'Saturday',
+	};
+	const out = days.map((day) => DAYS[day]);
+	if (out.length === 1) {
+		return out.join('');
+	} else if (out.length === 2) {
+		return out.join(' and ');
+	} else {
+		const outStr = out.reduce((o, d, i, a) => {
+			if (i + 1 === a.length) {
+				//last one
+				return `${o} and ${d}`;
+			} else {
+				return `${o} ${d},`;
+			}
+		}, '');
+		return outStr.trim();
+	}
 }
 
 export function sanitize(s: string) {
@@ -28,7 +56,10 @@ export function sanitize(s: string) {
  */
 export function getSpecialPickupDetail(specialPickups: SpecialPickupDetail[]) {
 	const now = dayjs();
-	for (const pickupDetail of specialPickups) {
+	// Reversing the array lets newer events take precedence
+	// one day sooner when the events are close together
+	// (like xmas and new years)
+	for (const pickupDetail of specialPickups.slice().reverse()) {
 		const diffDays = dayjs(pickupDetail.date).diff(now, 'days');
 		// dont show this pickup if its more than 4 days ago
 		if (diffDays < -5) continue;

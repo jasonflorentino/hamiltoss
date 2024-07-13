@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { SpecialPickupDetail } from '$lib/types';
 	import dayjs from 'dayjs';
+	import { Utils } from '$lib';
 
 	export let date = '';
 	export let name = '';
@@ -14,7 +15,9 @@
 		>{name} {dayjs(date).format('YYYY')}</span
 	>
 	<p class="mt-1 text-center text-sm font-medium leading-tight text-cyan-50 sm:mt-0">
-		{#if affectedPeriod === 'week'}
+		{#if Array.isArray(affectedPeriod)}
+			{`${Utils.toListOfDays(affectedPeriod)} pickups will happen one day later this week.`}
+		{:else if affectedPeriod === 'week'}
 			Pickup is one day later this week.
 		{:else if affectedPeriod === 'none'}
 			No change to the regular schedule.

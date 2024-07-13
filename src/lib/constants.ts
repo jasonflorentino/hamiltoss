@@ -82,14 +82,12 @@ export const PICKUP_CHANGES: SpecialPickupDetail[] = [
 	{
 		name: 'Christmas & Boxing Day',
 		date: '2024-12-25',
-		// TODO: one day later if normally wed,thu,fri
-		affectedPeriod: 'week',
+		affectedPeriod: ['wed', 'thu', 'fri'],
 	},
 	{
 		name: 'New Years Day',
 		date: '2025-01-01',
-		// TODO: one day later if normally wed,thu,fri
-		affectedPeriod: 'week',
+		affectedPeriod: ['wed', 'thu', 'fri'],
 	},
 	{
 		name: 'Family Day',
