@@ -6,6 +6,8 @@
 	export let date = '';
 	export let name = '';
 	export let affectedPeriod: SpecialPickupDetail['affectedPeriod'] = 'none';
+
+	const text = Utils.toPickupNoticeText(affectedPeriod, date);
 </script>
 
 <div
@@ -15,17 +17,7 @@
 		>{name} {dayjs(date).format('YYYY')}</span
 	>
 	<p class="mt-1 text-center text-sm font-medium leading-tight text-cyan-50 sm:mt-0">
-		{#if Array.isArray(affectedPeriod)}
-			{`${Utils.toListOfDays(affectedPeriod)} pickups will happen one day later this week.`}
-		{:else if affectedPeriod === 'week'}
-			Pickup is one day later this week.
-		{:else if affectedPeriod === 'none'}
-			No change to the regular schedule.
-		{:else if affectedPeriod === 'day'}
-			For this day only pickup will be on the following day instead.
-		{:else if affectedPeriod === 'yard'}
-			{`Leaf and yard waste pickup ${dayjs(date).isBefore(dayjs().month(6)) ? 'resumes' : 'ends'}.`}
-		{/if}
+		{text}
 	</p>
 </div>
 

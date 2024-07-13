@@ -1,6 +1,7 @@
 import dayjs from 'dayjs';
 import { replace } from 'lodash-es';
 import type { DayName, SpecialPickupDetail } from './types';
+import { Utils } from '$lib';
 
 function toDays(ms: number) {
 	return ms / 1000 / 60 / 60 / 24;
@@ -12,6 +13,25 @@ function toDays(ms: number) {
 export function toRelativeDateString(durationMs: number) {
 	const time = Math.floor(toDays(durationMs));
 	return `${time} day${time === 1 ? '' : 's'} ago`;
+}
+
+export function toPickupNoticeText(
+	affectedPeriod: SpecialPickupDetail['affectedPeriod'],
+	date: SpecialPickupDetail['date']
+) {
+	if (Array.isArray(affectedPeriod)) {
+		return `${Utils.toListOfDays(affectedPeriod)} pickups will happen one day later this week.`;
+	} else if (affectedPeriod === 'week') {
+		return 'Pickup is one day later this week.';
+	} else if (affectedPeriod === 'none') {
+		return 'No change to the regular schedule.';
+	} else if (affectedPeriod === 'day') {
+		return 'For this day only pickup will be on the following day instead.';
+	} else if (affectedPeriod === 'yard') {
+		return `Leaf and yard waste pickup ${
+			dayjs(date).isBefore(dayjs().month(6)) ? 'resumes' : 'ends'
+		}.`;
+	}
 }
 
 export function toListOfDays(days: DayName[]): string {
