@@ -17,10 +17,10 @@
 	<nav>
 		<ul class="mt-5 divide-y divide-emerald-400">
 			<li class="py-3 hover:text-gray-400">
-				<a href="/data/dates" class="text-lg">Important Dates</a>
+				<a href="/data/dates" class="text-xl xl:text-2xl">Important Dates</a>
 			</li>
 			<li class="py-3 hover:text-gray-400">
-				<a href="/materials" class="text-lg">All Materials</a>
+				<a href="/materials" class="text-xl xl:text-2xl">All Materials</a>
 			</li>
 		</ul>
 	</nav>

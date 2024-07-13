@@ -20,8 +20,8 @@
 			href: '/',
 		},
 		{
-			label: 'All Materials',
-			href: '/materials',
+			label: 'Data',
+			href: '/data',
 		},
 		{
 			label: 'About',
