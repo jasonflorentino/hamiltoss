@@ -33,10 +33,13 @@ export const SEARCH_SUGGESTIONS = [
  * showing one notice banner at a time! --
  * First match wins
  *
+ * affectedPeriod:
  * 'day' means only one day is affected.
  * 'week' means pickups for the whole week are affected.
  * 'none' menas there is no change to pickups.
  * 'yard' refers to a yard waste pickup change.
+ * If a list of day names is given they will be called out as specifically
+ * affected on the banner.
  */
 export const PICKUP_CHANGES: SpecialPickupDetail[] = [
 	{
