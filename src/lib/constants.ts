@@ -44,62 +44,67 @@ export const SEARCH_SUGGESTIONS = [
 export const PICKUP_CHANGES: SpecialPickupDetail[] = [
 	{
 		name: 'Good Friday',
-		date: '2025-04-18',
+		date: '2026-04-03',
 		affectedPeriod: 'day',
 	},
 	{
 		name: 'Easter Monday',
-		date: '2025-04-21',
+		date: '2026-04-06',
 		affectedPeriod: 'none',
 	},
 	{
 		name: 'Victoria Day',
-		date: '2025-05-19',
+		date: '2026-05-18',
 		affectedPeriod: 'week',
 	},
 	{
 		name: 'Canada Day',
-		date: '2025-07-01',
-		affectedPeriod: ['tue', 'wed', 'thu', 'fri'],
+		date: '2026-07-01',
+		affectedPeriod: ['wed', 'thu', 'fri'],
 	},
 	{
 		name: 'Civic Holiday',
-		date: '2025-08-04',
+		date: '2026-08-03',
 		affectedPeriod: 'week',
 	},
 	{
 		name: 'Labour Day',
-		date: '2025-09-01',
+		date: '2026-09-07',
 		affectedPeriod: 'week',
 	},
 	{
 		name: 'Thanksgiving',
-		date: '2025-10-13',
+		date: '2026-10-12',
 		affectedPeriod: 'week',
 	},
 	{
 		name: 'Yard Waste',
-		date: '2025-12-01',
+		date: '2026-12-07',
 		affectedPeriod: 'yard',
 	},
 	{
-		name: 'Christmas & Boxing Day',
-		date: '2025-12-25',
-		affectedPeriod: ['thu', 'fri'],
+		name: 'Christmas Day',
+		date: '2026-12-25',
+		affectedPeriod: 'day',
 	},
 	{
 		name: 'New Years Day',
-		date: '2026-01-01',
-		affectedPeriod: ['thu', 'fri'],
+		date: '2027-01-01',
+		affectedPeriod: 'day',
 	},
 	{
 		name: 'Family Day',
-		date: '2026-02-16',
+		date: '2027-02-15',
 		affectedPeriod: 'week',
 	},
 	{
 		name: 'Yard Waste',
-		date: '2026-03-02',
+		date: '2027-03-08',
 		affectedPeriod: 'yard',
+	},
+	{
+		name: 'Good Friday',
+		date: '2027-03-26',
+		affectedPeriod: 'day',
 	},
 ];
